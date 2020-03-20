@@ -15,12 +15,14 @@ const Login = React.lazy(() => import('./views/Pages/Login'))
 const Register = React.lazy(() => import('./views/Pages/Register'))
 const Page404 = React.lazy(() => import('./views/Pages/Page404'))
 const Page500 = React.lazy(() => import('./views/Pages/Page500'))
+const HandsontablePage = React.lazy(() => import('./views/Pages/Handsontable'))
 
 function App() {
   return (
     <HashRouter>
       <React.Suspense fallback={loading()}>
         <Switch>
+          <Route exact path="/handsontable" render={(props) => <HandsontablePage {...props} />} />
           <Route<RouteProps & { name: String }> exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
           <Route<RoutePropsEx> exact path="/register" name="Register Page" render={(props) => <Register {...props} />} />
           <Route<RoutePropsEx> exact path="/404" name="Page 404" render={(props) => <Page404 {...props} />} />
