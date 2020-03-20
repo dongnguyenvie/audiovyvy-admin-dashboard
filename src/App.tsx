@@ -8,7 +8,7 @@ import { RoutePropsEx } from './types/route'
 // import '@coreui/coreui/scss/coreui.scss'
 // import '@coreui/coreui/scss/_dropdown-menu-right.scss'
 import './App.scss'
-
+import '@coreui/coreui/scss/coreui.scss'
 // import
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>
 
