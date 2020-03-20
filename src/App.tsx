@@ -2,6 +2,7 @@ import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import { RoutePropsEx } from './types/route'
 import './App.scss'
+import { RouteProps } from 'react-router-dom'
 
 // import
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>
@@ -20,7 +21,7 @@ function App() {
     <HashRouter>
       <React.Suspense fallback={loading()}>
         <Switch>
-          <Route<RoutePropsEx> exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
+          <Route<RouteProps & { name: String }> exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
           <Route<RoutePropsEx> exact path="/register" name="Register Page" render={(props) => <Register {...props} />} />
           <Route<RoutePropsEx> exact path="/404" name="Page 404" render={(props) => <Page404 {...props} />} />
           <Route<RoutePropsEx> exact path="/500" name="Page 500" render={(props) => <Page500 {...props} />} />
