@@ -1,14 +1,8 @@
-import React, { Component, ComponentType } from 'react'
-import { HashRouter, Route, Switch, RouteProps } from 'react-router-dom'
+import React from 'react'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import { RoutePropsEx } from './types/route'
-// import '../node_modules/@coreui/icons/css/coreui-icons.css';
-// import 'flag-icon-css/css/flag-icon.min.css';
-// import 'font-awesome/css/font-awesome.min.css';
-// import 'simple-line-icons/css/simple-line-icons.css';
-// import '@coreui/coreui/scss/coreui.scss'
-// import '@coreui/coreui/scss/_dropdown-menu-right.scss'
 import './App.scss'
-import '@coreui/coreui/scss/coreui.scss'
+
 // import
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>
 

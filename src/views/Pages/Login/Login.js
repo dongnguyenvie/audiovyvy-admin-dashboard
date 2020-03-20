@@ -4,7 +4,6 @@ import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGr
 import { HashRouter, Route, Switch, RouteProps } from 'react-router-dom'
 
 class Login extends Component {
-  constructor({ matches }) {}
   render() {
     return (
       <div className="app flex-row align-items-center">
