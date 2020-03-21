@@ -27,7 +27,7 @@ const QUERY_LOGIN = gql`
 `
 
 const LoginPage = (props: LoginType) => {
-  console.error(`props`, props.uuid)
+  console.error(`111props`, props.uuid)
   const [handleLogin, { called, loading, data, error, client, networkStatus, fetchMore }] = useLazyQuery(QUERY_LOGIN)
   if (error) {
     toast.error(error?.graphQLErrors[0]?.message, {

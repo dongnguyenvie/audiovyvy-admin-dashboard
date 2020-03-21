@@ -27,11 +27,11 @@ function App() {
         <React.Suspense fallback={loading()}>
           <Switch>
             <RouteExtension exact path="/handsontable" name="Handsontable" component={HandsontablePage} />
-            <RouteExtension exact path="/login" name="Page 500" component={Login} />
+            <RouteExtension exact path="/login" isAuth name="Page 500" component={Login} />
             <RouteExtension exact path="/register" name="Register Page" component={Register} />
             <RouteExtension exact path="/404" name="Page 404" component={Page404} />
             <RouteExtension exact path="/500" name="Page 500" component={Page500} />
-            <RouteExtension path="/" name="Home" isAuthenticated component={DefaultLayout} />
+            <RouteExtension path="/" name="Home" isAuth component={DefaultLayout} />
           </Switch>
         </React.Suspense>
       </HashRouter>

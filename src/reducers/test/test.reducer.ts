@@ -7,13 +7,13 @@ import { ITestState } from '../../models/ITestState'
 export const testReducer: Reducer<ITestState, ActionTypes> = (state: ITestState = { username: '', password: '' }, action: ActionTypes): ITestState => {
   switch (action.type) {
     case ActionTypeKeys.GET_TEST_STATE:
-      return onGetTestState(state, action)
+      return _getTestState(state, action)
     default:
       return state
   }
 }
 
-function onGetTestState(state: ITestState, action: IGetTestState): ITestState {
+function _getTestState(state: ITestState, action: IGetTestState): ITestState {
   state = action.payload
   return action.payload
 }

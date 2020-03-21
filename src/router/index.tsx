@@ -1,20 +1,32 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Route } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
+import { connect } from 'react-redux'
+import { onGetUser } from '../reducers/authentication/Auth.reducer'
 
 interface IBeforeRoute {
   exact?: boolean
-  isAuthenticated?: boolean | null
   path: string
   component: React.ComponentType<any>
   name: string
+  isAuth?: boolean
+  onGetUser?: Function
+  user?: any
 }
-const RouteExtension = ({ component: Component, isAuthenticated, ...otherProps }: IBeforeRoute) => {
+const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...otherProps }: IBeforeRoute) => {
+  useEffect(() => {
+    if (isAuth) {
+      // setInterval(() => {
+      //   console.error('co auth', user)
+      //   onGetUser && onGetUser()
+      // }, 2000)
+      // onGetUser && onGetUser()
+      console.log(`>>>>>>>>> BeforeRoute`, isAuth)
+      console.log(`isAuthenticated`, isAuth)
+    }
+  }, [])
   // CheckAuthencation
-  if (isAuthenticated) {
-    console.log(`>>>>>>>>> BeforeRoute`, isAuthenticated)
-    console.log(`isAuthenticated`, isAuthenticated)
-  }
+
   const AfterRoute = () => {
     console.log(`>>>>>>>>> AfterRoute`, otherProps)
   }
@@ -34,4 +46,12 @@ const RouteExtension = ({ component: Component, isAuthenticated, ...otherProps }
   )
 }
 
-export default RouteExtension
+const mapStateToProps = (state: any) => ({
+  user: state.user
+})
+const mapDispatchToProps = {
+  onGetUser: onGetUser
+}
+const connector = connect(mapStateToProps, mapDispatchToProps)
+
+export default connector(RouteExtension)
