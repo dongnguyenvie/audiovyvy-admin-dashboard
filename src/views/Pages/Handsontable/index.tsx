@@ -301,6 +301,7 @@ const HandsontablePage = (props: any) => {
     }
     console.error(_container)
     _hot = new Handsontable(_container.current as any, hotSettings as any)
+    console.error(_hot)
     return () => {}
   }, [])
 
