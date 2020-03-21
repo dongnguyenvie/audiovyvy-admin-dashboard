@@ -27,6 +27,7 @@ const QUERY_LOGIN = gql`
 `
 
 const LoginPage = (props: LoginType) => {
+  console.error(`props`, props.uuid)
   const [handleLogin, { called, loading, data, error, client, networkStatus, fetchMore }] = useLazyQuery(QUERY_LOGIN)
   if (error) {
     toast.error(error?.graphQLErrors[0]?.message, {
@@ -73,3 +74,12 @@ const LoginPage = (props: LoginType) => {
 }
 
 export default LoginPage
+
+{
+  /* <Route exact path="/handsontable" render={(props) => <HandsontablePage {...props} />} />
+<Route<RouteProps & { name: String }> exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
+<Route<RoutePropsEx> exact path="/register" name="Register Page" render={(props) => <Register {...props} />} />
+<Route<RoutePropsEx> exact path="/404" name="Page 404" render={(props) => <Page404 {...props} />} />
+<Route<RoutePropsEx> exact path="/500" name="Page 500" render={(props) => <Page500 {...props} />} />
+<Route<RoutePropsEx> path="/" name="Home" render={(props) => <DefaultLayout {...props} />} /> */
+}

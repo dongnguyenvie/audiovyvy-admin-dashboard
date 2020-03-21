@@ -4,11 +4,15 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { ApolloProvider } from '@apollo/react-hooks'
 import apolloClient from './graphql/index'
+import { Provider } from 'react-redux'
+import aaaa from './store/'
 
 ReactDOM.render(
-  <ApolloProvider client={apolloClient}>
-    <App />
-  </ApolloProvider>,
+  <Provider store={aaaa}>
+    <ApolloProvider client={apolloClient}>
+      <App />
+    </ApolloProvider>
+  </Provider>,
   document.getElementById('root')
 )
 

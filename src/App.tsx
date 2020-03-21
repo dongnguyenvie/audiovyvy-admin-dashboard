@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import { RoutePropsEx } from './types/route'
 import { RouteProps } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
+import RouteExtension from './router'
 import './App.scss'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -25,12 +26,12 @@ function App() {
       <HashRouter>
         <React.Suspense fallback={loading()}>
           <Switch>
-            <Route exact path="/handsontable" render={(props) => <HandsontablePage {...props} />} />
-            <Route<RouteProps & { name: String }> exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
-            <Route<RoutePropsEx> exact path="/register" name="Register Page" render={(props) => <Register {...props} />} />
-            <Route<RoutePropsEx> exact path="/404" name="Page 404" render={(props) => <Page404 {...props} />} />
-            <Route<RoutePropsEx> exact path="/500" name="Page 500" render={(props) => <Page500 {...props} />} />
-            <Route<RoutePropsEx> path="/" name="Home" render={(props) => <DefaultLayout {...props} />} />
+            <RouteExtension exact path="/handsontable" name="Handsontable" component={HandsontablePage} />
+            <RouteExtension exact path="/login" name="Page 500" component={Login} />
+            <RouteExtension exact path="/register" name="Register Page" component={Register} />
+            <RouteExtension exact path="/404" name="Page 404" component={Page404} />
+            <RouteExtension exact path="/500" name="Page 500" component={Page500} />
+            <RouteExtension path="/" name="Home" isAuthenticated component={DefaultLayout} />
           </Switch>
         </React.Suspense>
       </HashRouter>
