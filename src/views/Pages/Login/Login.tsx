@@ -6,6 +6,7 @@ import LoginForm from './Form'
 import gql from 'graphql-tag'
 import { useQuery, useLazyQuery } from '@apollo/react-hooks'
 import { toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 const QUERY_LOGIN = gql`
   query login($username: String!, $password: String!, $rememberMe: Boolean!) {
@@ -27,8 +28,9 @@ const QUERY_LOGIN = gql`
 `
 
 const LoginPage = (props: LoginType) => {
-  console.error(`111props`, props.uuid)
+  // console.log(`111props`, props.uuid)
   const [handleLogin, { called, loading, data, error, client, networkStatus, fetchMore }] = useLazyQuery(QUERY_LOGIN)
+  let history = useHistory()
   if (error) {
     toast.error(error?.graphQLErrors[0]?.message, {
       position: toast.POSITION.BOTTOM_RIGHT
@@ -39,6 +41,9 @@ const LoginPage = (props: LoginType) => {
     toast.success('Login success', {
       position: toast.POSITION.BOTTOM_RIGHT
     })
+    setTimeout(() => {
+      history.push('/')
+    }, 500)
   }
 
   return (

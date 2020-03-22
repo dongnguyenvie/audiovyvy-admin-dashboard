@@ -14,7 +14,6 @@ const initState = {
 export const getUserReducer: Reducer<IUSER, ActionTypes> = (state = initState, action): IUSER => {
   switch (action.type) {
     case ActionTypeKeys.GET_USER:
-      // if (action.payload)
       state.count = state.count + 1
       // console.error(`ActionTypeKeys.GET_USER`, state)
       return {...state}

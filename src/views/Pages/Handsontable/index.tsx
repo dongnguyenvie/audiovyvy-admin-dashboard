@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import Handsontable from 'handsontable'
+import Handsontable from '../../../plugins/handsontable/'
 
 const HandsontablePage = (props: any) => {
   let _container = useRef(null)
@@ -296,11 +296,10 @@ const HandsontablePage = (props: any) => {
       height: 487,
       maxRows: 22,
       rowHeaders: true,
-      colHeaders: ['ID', 'Country', 'Code', 'Currency', 'Level', 'Units', 'Date', 'Change'],
-      licenseKey: 'non-commercial-and-evaluation'
+      colHeaders: ['ID', 'Country', 'Code', 'Currency', 'Level', 'Units', 'Date', 'Change']
     }
     console.error(_container)
-    _hot = new Handsontable(_container.current as any, hotSettings as any)
+    _hot = Handsontable(_container.current as any, hotSettings)
     console.error(_hot)
     return () => {}
   }, [])
