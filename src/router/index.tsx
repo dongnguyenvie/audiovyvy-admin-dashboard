@@ -16,20 +16,19 @@ interface IBeforeRoute {
 const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...otherProps }: IBeforeRoute) => {
   useEffect(() => {
     if (isAuth) {
-      // setInterval(() => {
-      //   console.error('co auth', user)
-      //   onGetUser && onGetUser()
-      // }, 2000)
-      // onGetUser && onGetUser()
+      setInterval(() => {
+        console.error('co auth', user)
+        onGetUser && onGetUser()
+      }, 2000)
       console.log(`>>>>>>>>> BeforeRoute`, isAuth)
       console.log(`isAuthenticated`, isAuth)
     }
   }, [])
-  // CheckAuthencation
 
   const AfterRoute = () => {
     console.log(`>>>>>>>>> AfterRoute`, otherProps)
   }
+
   const _uuid = uuidv4()
   return (
     <>
@@ -52,6 +51,7 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = {
   onGetUser: onGetUser
 }
+
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export default connector(RouteExtension)
