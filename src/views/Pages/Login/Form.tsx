@@ -78,6 +78,9 @@ const LoginForm = withFormik<LoginFormProps, FormValues>({
         username,
         password,
         rememberMe: false
+      },
+      onCompleted: (data: any) => {
+        console.error(`onCompleted`, data)
       }
     })
     setSubmitting(false)

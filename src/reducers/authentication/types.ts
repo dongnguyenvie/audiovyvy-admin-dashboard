@@ -1,16 +1,26 @@
 export enum ActionTypeKeys {
-  GET_USER = 'GET_USER'
+  GET_USER = 'GET_USER',
+  SET_USER = 'SET_USER'
 }
-
 export interface IUSER {
-  token: string
+  username?: string
+  fullName?: string
+  avatar?: string
+  email?: string
+  phone?: string
+  count?: number
+  roles?: Array<string>
   isLogin: boolean
-  count: number
 }
 
 export interface IGetUserAction {
   type: ActionTypeKeys.GET_USER
-  payload: IUSER
+  payload?: IUSER
 }
 
-export type ActionTypes = IGetUserAction
+export interface ISetUserAction {
+  type: ActionTypeKeys.SET_USER
+  payload?: IUSER
+}
+
+export type ActionTypes = IGetUserAction | ISetUserAction

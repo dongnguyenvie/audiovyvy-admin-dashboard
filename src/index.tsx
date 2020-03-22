@@ -7,6 +7,8 @@ import apolloClient from './graphql/index'
 import { Provider } from 'react-redux'
 import storeClient from './store/'
 
+console.log('ENV', process.env)
+
 ReactDOM.render(
   <Provider store={storeClient}>
     <ApolloProvider client={apolloClient}>

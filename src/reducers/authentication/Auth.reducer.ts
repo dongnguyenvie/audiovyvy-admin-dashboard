@@ -1,21 +1,34 @@
 import { Reducer } from 'redux'
-import { IUSER, ActionTypeKeys, ActionTypes, IGetUserAction } from './types'
+import { IUSER, ActionTypeKeys, ActionTypes, IGetUserAction, ISetUserAction } from './types'
 
-export const onGetUser = () => {
-  return {
-    type: ActionTypeKeys.GET_USER
-  }
-}
 const initState = {
-  token: 'token-ex',
-  isLogin: true,
-  count: 0
+  isLogin: false
 }
 export const getUserReducer: Reducer<IUSER, ActionTypes> = (state = initState, action): IUSER => {
   switch (action.type) {
     case ActionTypeKeys.GET_USER:
-      return { ...state, count: state.count + 1 }
+      return state
+
+    case ActionTypeKeys.SET_USER:
+      return {
+        ...state,
+        ...action.payload
+      }
+
     default:
       return state
+  }
+}
+
+export const onGetUser = (): IGetUserAction => {
+  return {
+    type: ActionTypeKeys.GET_USER
+  }
+}
+
+export const onSetUser = (payload: IUSER): ISetUserAction => {
+  return {
+    type: ActionTypeKeys.SET_USER,
+    payload
   }
 }

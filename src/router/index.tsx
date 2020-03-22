@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { connect } from 'react-redux'
 import { onGetUser } from '../reducers/authentication/Auth.reducer'
+import { useHistory } from 'react-router-dom'
 
 interface IBeforeRoute {
   exact?: boolean
@@ -14,14 +15,21 @@ interface IBeforeRoute {
   user?: any
 }
 const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...otherProps }: IBeforeRoute) => {
+  let history = useHistory()
+  if (isAuth) {
+    console.error(`checkauth`, user)
+    // if (!!user) {
+    //   // history.push('/login');
+    // }
+  }
   useEffect(() => {
     if (isAuth) {
-      setInterval(() => {
-        console.error('co auth', user)
-        onGetUser && onGetUser()
-      }, 2000)
-      console.log(`>>>>>>>>> BeforeRoute`, isAuth)
-      console.log(`isAuthenticated`, isAuth)
+      // setInterval(() => {
+      //   console.error('co auth', user)
+      //   onGetUser && onGetUser()
+      // }, 2000)
+      // console.log(`>>>>>>>>> BeforeRoute`, isAuth)
+      // console.log(`isAuthenticated`, isAuth)
     }
   }, [])
 
