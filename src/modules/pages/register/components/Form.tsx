@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { withFormik, FormikProps } from 'formik'
 import * as Yup from 'yup'
 import { IRegisterFormProps, IResigerFormValues } from '../types'
+import PrintRawText from '../../../print/components/index'
 
 const LoginForm = (props: FormikProps<IResigerFormValues>) => {
   const { t } = useTranslation()
   const { handleSubmit, handleChange, handleBlur, values, errors } = props
   return (
     <Form>
-      <pre>{JSON.stringify(values, null, 2)}</pre>
+      <PrintRawText value={values} />
       <h1>{t('register')}</h1>
       <p className="text-muted">{t('createYourAccount')}</p>
       <InputGroup className="mb-3">

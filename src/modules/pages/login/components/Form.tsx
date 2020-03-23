@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import { useTranslation } from 'react-i18next'
 import { ILoginFormValues, ILoginFormProps, OtherProps } from '../types'
 import { loginActions } from '../types'
+import PrintRawText from '../../../print/components/index'
 
 const LoginForm = (props: OtherProps & FormikProps<ILoginFormValues>) => {
   const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting } = props
@@ -12,7 +13,7 @@ const LoginForm = (props: OtherProps & FormikProps<ILoginFormValues>) => {
   return (
     <Form>
       <h1>{t(`login`)}</h1>
-      {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+      <PrintRawText value={values} />
       <p className="text-muted">{t(`signInToYourAccount`)}</p>
       {errors.username && touched.username && <Label>{errors.username}</Label>}
       <InputGroup className="mb-3">
