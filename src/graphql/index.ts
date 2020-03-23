@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
-const URI = process.env.REACT_APP_GRAPHQL_URL || 'http://audiovyvy.com:3000/graphql'
+const URI = process.env.REACT_APP_GRAPHQL_URL || 'http://45.77.170.14:7001/graphql'
 
 const httpLink = createHttpLink({
   uri: URI
