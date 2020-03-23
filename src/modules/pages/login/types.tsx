@@ -13,8 +13,14 @@ export interface ILoginFormProps {
   initialRememberMe?: boolean
   onLogin: Function
   message?: String
+  onCallback: Function
 }
 
 export interface ILoginProps extends RouteProps {
-    uuid?: string
+  uuid?: string
+}
+
+export enum loginActions {
+  SUCCESS = 'SUCCESS',
+  FAIL = 'FAIL'
 }

@@ -4,6 +4,7 @@ import { withFormik, FormikProps } from 'formik'
 import * as Yup from 'yup'
 import { useTranslation } from 'react-i18next'
 import { ILoginFormValues, ILoginFormProps, OtherProps } from '../types'
+import { loginActions } from '../types'
 
 const LoginForm = (props: OtherProps & FormikProps<ILoginFormValues>) => {
   const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting } = props
@@ -70,22 +71,21 @@ const LoginFormik = withFormik<ILoginFormProps, ILoginFormValues>({
   }),
 
   handleSubmit({ username, password, rememberMe }, { props, setSubmitting, setErrors, setValues }) {
-    props.onLogin({
-      variables: {
-        username,
-        password,
-        rememberMe
-      },
-      onCompleted: (data: any) => {
-        console.error(`onCompleted`, data)
-      }
-    })
+    props
+      .onLogin({
+        variables: {
+          username,
+          password,
+          rememberMe
+        }
+      })
+      .then((data: any) => {
+        props.onCallback(loginActions.SUCCESS, data.data)
+      })
+      .catch((err: any) => {
+        props.onCallback(loginActions.FAIL)
+      })
     setSubmitting(false)
-  },
-
-  mapValuesToPayload(payload) {
-    console.error(1111, payload)
-    return payload
   }
 })(LoginForm)
 

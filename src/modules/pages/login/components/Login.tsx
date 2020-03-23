@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom'
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, Label } from 'reactstrap'
 import LoginForm from './Form'
 import gql from 'graphql-tag'
-import { useQuery, useLazyQuery } from '@apollo/react-hooks'
+import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks'
 import { toast } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { onSetUser } from '../../../../reducers/authentication/Auth.reducer'
-import { ILoginProps } from '../types'
+import { ILoginProps, loginActions } from '../types'
 import _ from 'lodash'
 import '../style.scss'
 
-const QUERY_LOGIN = gql`
-  query login($username: String!, $password: String!, $rememberMe: Boolean!) {
+const MUTATION_LOGIN = gql`
+  mutation login($username: String!, $password: String!, $rememberMe: Boolean!) {
     login(user: { username: $username, password: $password, rememberMe: $rememberMe }) {
       token
       user {
@@ -32,31 +32,32 @@ const QUERY_LOGIN = gql`
 
 const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
   let history = useHistory()
+  const handleCallback = (actions: keyof typeof loginActions, data: any) => {
+    if (actions === loginActions.SUCCESS) {
+      toast.success('Login success', {
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
+      const _token = data.login.token
+      let _user = {
+        ...data.login.user,
+        isLogin: true
+      }
+      _user.roles = data.login.user.roles.map((role: { id: string }) => role.id)
+      _user.token = _token
+      console.error(`user`, _user)
+      props?.onSetUser(_user)
 
-  const onCompleted = (data: any) => {
-    toast.success('Login success', {
-      position: toast.POSITION.BOTTOM_RIGHT
-    })
-    const _token = data.login.token
-    let _user = {
-      ...data.login.user,
-      isLogin: true
+      setTimeout(() => {
+        history.push('/')
+      }, 100)
+    } else {
+      toast.error(error?.graphQLErrors[0]?.message || 'error', {
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
     }
-    _user.roles = data.login.user.roles.map((role: { id: string }) => role.id)
-    _user.token = _token
-    console.error(`user`, _user)
-    props?.onSetUser(_user)
+  }
 
-    setTimeout(() => {
-      history.push('/')
-    }, 100)
-  }
-  const [handleLogin, { called, loading, data, error, client, networkStatus, fetchMore }] = useLazyQuery(QUERY_LOGIN, { onCompleted })
-  if (error) {
-    toast.error(error?.graphQLErrors[0]?.message || 'error', {
-      position: toast.POSITION.BOTTOM_RIGHT
-    })
-  }
+  const [handleLogin, { called, loading, data, error }] = useMutation(MUTATION_LOGIN)
 
   return (
     <div className="app flex-row align-items-center">
@@ -66,7 +67,7 @@ const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
             <CardGroup>
               <Card className="p-4">
                 <CardBody>
-                  <LoginForm onLogin={handleLogin} message={''} />
+                  <LoginForm onLogin={handleLogin} onCallback={handleCallback} message={''} />
                 </CardBody>
               </Card>
               <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
