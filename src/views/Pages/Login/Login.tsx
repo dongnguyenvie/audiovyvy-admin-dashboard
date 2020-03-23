@@ -38,7 +38,8 @@ const LoginPage = (props: LoginType & { onSetUser: typeof onSetUser }) => {
     })
     const _token = data.login.token
     let _user = {
-      ...data.login.user
+      ...data.login.user,
+      isLogin: true
     }
     _user.roles = data.login.user.roles.map((role: { id: string }) => role.id)
     _user.token = _token
@@ -51,7 +52,7 @@ const LoginPage = (props: LoginType & { onSetUser: typeof onSetUser }) => {
   }
   const [handleLogin, { called, loading, data, error, client, networkStatus, fetchMore }] = useLazyQuery(QUERY_LOGIN, { onCompleted })
   if (error) {
-    toast.error(error?.graphQLErrors[0]?.message, {
+    toast.error(error?.graphQLErrors[0]?.message || 'error', {
       position: toast.POSITION.BOTTOM_RIGHT
     })
   }

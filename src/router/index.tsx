@@ -17,10 +17,9 @@ interface IBeforeRoute {
 const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...otherProps }: IBeforeRoute) => {
   let history = useHistory()
   if (isAuth) {
-    console.error(`checkauth`, user)
-    // if (!!user) {
-    //   // history.push('/login');
-    // }
+    if (!user.isLogin) {
+      history.push('/login')
+    }
   }
   useEffect(() => {
     if (isAuth) {
