@@ -8,17 +8,17 @@ import gql from 'graphql-tag'
 import '../style.scss'
 
 const MUTATION_CREATE_USER = gql`
-  query login($username: String!, $password: String!, $rememberMe: Boolean!) {
-    login(user: { username: $username, password: $password, rememberMe: $rememberMe }) {
-      token
-      user {
+  mutation createUser($user: InputCreateUser) {
+    createUser(user: $user) {
+      success
+      message
+      result {
+        id
         username
         fullName
-        avatar
-        email
-        phone
         roles {
-          id
+          name
+          permission
         }
       }
     }
@@ -27,10 +27,11 @@ const MUTATION_CREATE_USER = gql`
 
 const Register = (props: IRegisterProps) => {
   const { t } = useTranslation()
-  const [handleCreateUser, { client, data, loading, error, called }] = useMutation(MUTATION_CREATE_USER)
+  const [handleCreateUser, { data, loading, error }] = useMutation(MUTATION_CREATE_USER)
 
   return (
     <div className="app flex-row align-items-center">
+      <pre>{!loading && data && JSON.stringify(data, null, 2)}</pre>
       <Container>
         <Row className="justify-content-center">
           <Col md="9" lg="7" xl="6">

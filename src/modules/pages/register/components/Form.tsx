@@ -43,7 +43,7 @@ const LoginForm = (props: FormikProps<IResigerFormValues>) => {
         </InputGroupAddon>
         <Input type="password" name="confirmPassword" onChange={handleChange} onBlur={handleBlur} placeholder={t('confirmPassword')} value={values.confirmPassword} autoComplete="new-password" />
       </InputGroup>
-      <Button color="success" type="submit" block>
+      <Button color="success" type="submit" block onClick={handleSubmit}>
         {t('createAccount')}
       </Button>
     </Form>
@@ -64,7 +64,7 @@ const validationSchema = Yup.object().shape({
     .required()
     .label('Confirm password')
     .test('passwords-match', 'Passwords must match ya fool', function(value) {
-      console.error(`this`, this)
+      // console.error(`this`, this)
       return this.parent.password === value
     })
 })
@@ -81,7 +81,18 @@ const RegisterFromik = withFormik<IRegisterFormProps, IResigerFormValues>({
     confirmPassword: ''
   }),
   validationSchema,
-  handleSubmit({ username, email, fullName, avatar, password, phone, roles }, { props, setSubmitting, setErrors, setValues }) {}
+  handleSubmit({ username, email, fullName, avatar, password, phone, roles }, { props, setSubmitting, setErrors, setValues }) {
+    props.onCreateUser &&
+      props.onCreateUser({
+        username,
+        email,
+        fullName,
+        avatar,
+        password,
+        phone,
+        roles
+      })
+  }
 })(LoginForm)
 
 export default RegisterFromik
