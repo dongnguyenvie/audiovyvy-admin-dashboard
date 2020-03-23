@@ -3,6 +3,7 @@ import { Route, useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { connect } from 'react-redux'
 import { onGetUser } from '../reducers/authentication/Auth.reducer'
+// import { toast } from 'react-toastify'
 
 interface IBeforeRoute {
   exact?: boolean
@@ -20,6 +21,11 @@ const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...othe
       history.push('/login')
     }
   }
+  useEffect(() => {
+    return () => {
+      
+    }
+  }, [])
 
   const AfterRoute = () => {
     console.log(`>>>>>>>>> AfterRoute`, otherProps)

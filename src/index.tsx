@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import apolloClient from './graphql/index'
 import { Provider } from 'react-redux'
 import storeClient from './store/'
-
+import './i18n';
 console.log('ENV', process.env)
 
 ReactDOM.render(

@@ -1,8 +1,6 @@
 import React from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
-import { RoutePropsEx } from './types/route'
-import { RouteProps } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { HashRouter, Switch } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import RouteExtension from './router'
 import './App.scss'
 import 'react-toastify/dist/ReactToastify.css'
@@ -22,7 +20,7 @@ const HandsontablePage = React.lazy(() => import('./views/Pages/Handsontable'))
 
 function App() {
   return (
-    <div>
+    <>
       <HashRouter>
         <React.Suspense fallback={loading()}>
           <Switch>
@@ -36,7 +34,7 @@ function App() {
         </React.Suspense>
       </HashRouter>
       <ToastContainer />
-    </div>
+    </>
   )
 }
 

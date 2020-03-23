@@ -1,0 +1,10 @@
+{
+    "rememberMe": "Ghi nhớ tôi",
+    "signInToYourAccount": "Đăng nhập vào tài khoản của bạn",
+    "login": "Đăng nhập",
+    "forgotPassword": "Quên mật khẩu?",
+    "username": "Tài khoản",
+    "password": "Mật khẩu",
+    "usernameIsRequired": "Tải khoản không được để trống",
+    "passwordIsRequired": "Mật khẩu không được để trống"
+}
