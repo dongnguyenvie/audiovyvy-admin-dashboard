@@ -3,7 +3,7 @@ import Handsontable from '../../../plugins/handsontable/'
 
 const HandsontablePage = (props: any) => {
   let _container = useRef(null)
-  let _hot: any = useState(null)
+  let [hot, setHot]: any = useState(null)
 
   useEffect((): any => {
     const dataObject = [
@@ -244,8 +244,6 @@ const HandsontablePage = (props: any) => {
         td.appendChild(textNode)
       }
     }
-    //   var hotElement = document.querySelector('#hot')
-    //   var hotElementContainer = hotElement.parentNode
     const hotSettings = {
       data: dataObject,
       columns: [
@@ -298,11 +296,11 @@ const HandsontablePage = (props: any) => {
       rowHeaders: true,
       colHeaders: ['ID', 'Country', 'Code', 'Currency', 'Level', 'Units', 'Date', 'Change']
     }
-    console.error(_container)
-    _hot = Handsontable(_container.current as any, hotSettings)
-    console.error(_hot)
+    const _hot = Handsontable(_container.current as any, hotSettings)
+    setHot(_hot)
     return () => {}
   }, [])
+  console.error(`hot`, hot)
 
   return (
     <div>
