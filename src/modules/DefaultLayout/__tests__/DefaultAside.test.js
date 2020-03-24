@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DefaultAside from '../DefaultAside';
+import DefaultAside from '../components/DefaultAside';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

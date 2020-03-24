@@ -6,5 +6,6 @@
     "username": "Tài khoản",
     "password": "Mật khẩu",
     "usernameIsRequired": "Tải khoản không được để trống",
-    "passwordIsRequired": "Mật khẩu không được để trống"
+    "passwordIsRequired": "Mật khẩu không được để trống",
+    "list": "Danh sách"
 }

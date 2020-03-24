@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Route, useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { connect } from 'react-redux'
-import { onGetUser } from '../reducers/authentication/Auth.reducer'
+// import { onGetUser } from '../reducers/authentication/Auth.reducer'
 // import { toast } from 'react-toastify'
 
 interface IBeforeRoute {
@@ -51,7 +51,7 @@ const mapStateToProps = (state: any) => ({
   user: state.user
 })
 const mapDispatchToProps = {
-  onGetUser: onGetUser
+  // onGetUser: onGetUser
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)

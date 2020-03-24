@@ -6,5 +6,6 @@
     "username": "Username",
     "password": "Password",
     "usernameIsRequired": "Username is required",
-    "passwordIsRequired": "Password is required"
+    "passwordIsRequired": "Password is required",
+    "list": "List"
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DefaultFooter from '../DefaultFooter';
+import DefaultFooter from '../components/DefaultFooter';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

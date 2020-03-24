@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>
 
 // Containers
-const DefaultLayout = React.lazy(() => import('./containers/DefaultLayout'))
+const DefaultLayout = React.lazy(() => import('./modules/DefaultLayout/components/DefaultLayout'))
 
 // Pages
 const Login = React.lazy(() => import('./modules/pages/login/components/Login'))

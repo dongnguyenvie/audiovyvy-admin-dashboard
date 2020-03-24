@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter, Route} from 'react-router-dom';
-import DefaultLayout from '../DefaultLayout';
+import DefaultLayout from '../components/DefaultLayout';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
