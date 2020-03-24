@@ -1,11 +1,17 @@
 {
-    "rememberMe": "Remember me",
-    "signInToYourAccount":"Sign In to your account",
-    "login": "Login",
-    "forgotPassword": "Forgot password?",
-    "username": "Username",
-    "password": "Password",
-    "usernameIsRequired": "Username is required",
-    "passwordIsRequired": "Password is required",
-    "list": "List"
+  "rememberMe": "Remember me",
+  "signInToYourAccount": "Sign In to your account",
+  "login": "Login",
+  "forgotPassword": "Forgot password?",
+  "username": "Username",
+  "password": "Password",
+  "usernameIsRequired": "Username is required",
+  "passwordIsRequired": "Password is required",
+  "list": "List",
+  "accessForbidden": "Access forbidden",
+  "403": "403",
+  "thePageNotFound": "The page you are looking for is temporarily unavailable.",
+  "search": "Search",
+  "whatAreULook": "What are you looking for?",
+  "404": "404"
 }

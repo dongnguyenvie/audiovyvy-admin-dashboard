@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap'
-import { IPage500 } from '../types'
+import { IPage403 } from '../types'
 import { useTranslation } from 'react-i18next'
 
-const Page500 = (props: IPage500) => {
+const Page403 = (props: IPage403) => {
   const { t } = useTranslation()
   return (
     <div className="app flex-row align-items-center">
@@ -11,8 +11,8 @@ const Page500 = (props: IPage500) => {
         <Row className="justify-content-center">
           <Col md="6">
             <span className="clearfix">
-              <h1 className="float-left display-3 mr-4">500</h1>
-              <h4 className="pt-3">Houston, we have a problem!</h4>
+              <h1 className="float-left display-3 mr-4">{t('403')}</h1>
+              <h4 className="pt-3">{t('accessForbidden')}</h4>
               <p className="text-muted float-left">{t('thePageNotFound')}</p>
             </span>
             <InputGroup className="input-prepend">
@@ -23,7 +23,7 @@ const Page500 = (props: IPage500) => {
               </InputGroupAddon>
               <Input size={16} type="text" placeholder={t('whatAreULook')} />
               <InputGroupAddon addonType="append">
-                <Button color="info">Search</Button>
+                <Button color="info">{t('search')}</Button>
               </InputGroupAddon>
             </InputGroup>
           </Col>
@@ -33,4 +33,4 @@ const Page500 = (props: IPage500) => {
   )
 }
 
-export default Page500
+export default Page403

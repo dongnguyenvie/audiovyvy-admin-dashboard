@@ -1,11 +1,17 @@
 {
-    "rememberMe": "Ghi nhớ tôi",
-    "signInToYourAccount": "Đăng nhập vào tài khoản của bạn",
-    "login": "Đăng nhập",
-    "forgotPassword": "Quên mật khẩu?",
-    "username": "Tài khoản",
-    "password": "Mật khẩu",
-    "usernameIsRequired": "Tải khoản không được để trống",
-    "passwordIsRequired": "Mật khẩu không được để trống",
-    "list": "Danh sách"
+  "rememberMe": "Ghi nhớ tôi",
+  "signInToYourAccount": "Đăng nhập vào tài khoản của bạn",
+  "login": "Đăng nhập",
+  "forgotPassword": "Quên mật khẩu?",
+  "username": "Tài khoản",
+  "password": "Mật khẩu",
+  "usernameIsRequired": "Tải khoản không được để trống",
+  "passwordIsRequired": "Mật khẩu không được để trống",
+  "list": "Danh sách",
+  "accessForbidden": "Không có quyền truy cập",
+  "403": "403",
+  "thePageNotFound": "Trang bạn đang tìm kiếm tạm thời không có.",
+  "search": "Tìm kiếm",
+  "whatAreULook": "Bạn đang tìm kiếm cái gì?",
+  "404": "404"
 }
