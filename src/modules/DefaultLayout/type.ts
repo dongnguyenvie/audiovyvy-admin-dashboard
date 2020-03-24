@@ -6,6 +6,11 @@ export interface IRouteExProps extends RouteProps {
 export interface IDefaultLayoutProps extends RouteProps {
   name?: string
 }
-export interface IDefaultAsideProps {
+interface IDefaultProps {
   children?: ReactNode
+}
+export interface IDefaultAsideProps extends IDefaultProps {}
+export interface IDefaultFooterProps extends IDefaultProps {}
+export interface IDefaultHeaderProps extends IDefaultProps {
+  onLogout: Function
 }

@@ -14,8 +14,8 @@ const DefaultLayout = React.lazy(() => import('./modules/DefaultLayout/component
 // Pages
 const Login = React.lazy(() => import('./modules/pages/login/components/Login'))
 const Register = React.lazy(() => import('./modules/pages/register/components/Register'))
-const Page404 = React.lazy(() => import('./views/Pages/Page404'))
-const Page500 = React.lazy(() => import('./views/Pages/Page500'))
+const Page404 = React.lazy(() => import('./modules/pages/page404/components/Page404'))
+const Page500 = React.lazy(() => import('./modules/pages/page500/components/Page500'))
 const HandsontablePage = React.lazy(() => import('./views/Pages/Handsontable'))
 
 function App() {

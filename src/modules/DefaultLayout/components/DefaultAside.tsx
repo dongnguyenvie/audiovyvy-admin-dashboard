@@ -5,9 +5,10 @@ import classNames from 'classnames'
 import { AppSwitch } from '@coreui/react'
 import { IDefaultAsideProps } from '../type'
 
-const DefaultAside = ({ children, ...attributes }: IDefaultAsideProps) => {
+const defaultProps = {}
+const DefaultAside = ({ children, ...attributes }: IDefaultAsideProps = defaultProps) => {
   const [activeTab, setActiveTab] = useState('1')
-  const toggle = (tab: any) => {
+  const toggle = (tab: typeof activeTab) => {
     if (activeTab !== tab) {
       setActiveTab(tab)
     }
