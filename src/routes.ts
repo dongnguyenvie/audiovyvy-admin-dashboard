@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { ComponentType, LazyExoticComponent } from 'react'
+import { RouteProps } from 'react-router-dom'
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs/Breadcrumbs'))
 const Cards = React.lazy(() => import('./views/Base/Cards/Cards'))
@@ -36,8 +37,14 @@ const Widgets = React.lazy(() => import('./views/Widgets/Widgets'))
 const Users = React.lazy(() => import('./views/Users/Users'))
 const User = React.lazy(() => import('./views/Users/User'))
 
+interface IRoutes {
+  name?: string
+  path?: string
+  exact?: boolean
+  component?: LazyExoticComponent<ComponentType<any>>
+}
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
-const routes = [
+const routes: Array<IRoutes> = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/post/list', name: 'list', component: Dashboard },
