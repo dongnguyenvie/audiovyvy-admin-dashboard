@@ -1,5 +1,4 @@
 import React, { ComponentType, LazyExoticComponent } from 'react'
-import { RouteProps } from 'react-router-dom'
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs/Breadcrumbs'))
 const Cards = React.lazy(() => import('./views/Base/Cards/Cards'))
