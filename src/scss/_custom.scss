@@ -1,1 +1,39 @@
 // Here you can add other styles
+
+/** Handsontable custom style **/
+.handsontable-wrapper {
+  //   display: flex;
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+}
+.handsontable {
+  thead th {
+    background-color: #1399e6;
+    color: #fff;
+  }
+  td {
+    background-color: #ecebeb;
+  }
+}
+.edit-mode {
+  .handsontable {
+    thead th .relative {
+      background-color: #1399e6;
+      color: #fff;
+    }
+    td {
+      background-color: #fff;
+    }
+  }
+}
+.handsontable {
+  thead th.ht__active_highlight .relative,
+  tbody th.ht__highlight,
+  thead th.ht__highlight,
+  th.ht__highlight .relative {
+    background-color: #0368a1 !important;
+    color: #fff;
+  }
+}
+/** Handsontable custom style **/

@@ -17,7 +17,7 @@ const Register = React.lazy(() => import('./modules/pages/register/components/Re
 const Page404 = React.lazy(() => import('./modules/pages/page404/components/Page404'))
 const Page403 = React.lazy(() => import('./modules/pages/page403/components/Page403'))
 const Page500 = React.lazy(() => import('./modules/pages/page500/components/Page500'))
-const HandsontablePage = React.lazy(() => import('./views/Pages/Handsontable'))
+// const HandsontablePage = React.lazy(() => import('./views/Pages/Handsontable'))
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
       <HashRouter>
         <React.Suspense fallback={loading()}>
           <Switch>
-            <RouteExtension exact path="/handsontable" name="Handsontable" component={HandsontablePage} />
+            {/* <RouteExtension exact path="/handsontable" name="Handsontable" component={HandsontablePage} /> */}
             <RouteExtension exact path="/login" name="Page 500" component={Login} />
             <RouteExtension exact path="/register" name="Register Page" component={Register} />
             <RouteExtension exact path="/404" name="Page 404" component={Page404} />

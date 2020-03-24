@@ -19,8 +19,7 @@ i18n.use(initReactI18next).init({
     }
   },
   fallbackLng: 'en',
-  debug: true,
-
+  debug: false,
   // have a common namespace used around the full app
   ns: [],
   defaultNS: 'common',
