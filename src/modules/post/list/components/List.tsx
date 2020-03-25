@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap'
 import Handsontable, { IHandsontable } from '../../../../plugins/handsontable'
 import { useQuery } from '@apollo/react-hooks'
@@ -35,7 +35,6 @@ const ListOfPosts = (props: any) => {
   const containerEl = useRef(null)
   const [hot, setHot] = useState<IHandsontable>(null)
   const [isEdit, setEditMode] = useState(false)
-
   const { fetchMore, data, loading } = useQuery(QUERY_POSTS, {
     variables: {
       filters: {
@@ -45,31 +44,39 @@ const ListOfPosts = (props: any) => {
       }
     }
   })
+
+  const settings: any = useMemo(() => {
+    let _settings: any = {}
+    let _data: any = []
+    const _posts = _.get(data, 'getPosts.docs')
+    const _columns = [
+      { data: 'title', type: 'text' },
+      { data: 'content', type: 'text' },
+      { data: 'username', type: 'text' },
+      { data: 'avatar', renderer: coverRenderer }
+    ]
+    if (data) {
+      _posts.forEach((post: any) => {
+        const _post: any = {}
+        _post.title = post.title
+        _post.content = post.content
+        _post.username = post.user.username
+        _post.avatar = post.user.avatar
+        _data.push(_post)
+      })
+      _settings.data = _data
+    }
+    _settings.columns = _columns
+    return _settings
+  }, [data])
+
   useEffect(() => {
     const colHeaders = ['title', 'content', 'username', 'avatar']
     const _settings = {
       colHeaders,
-      afterChange: (changes: any) => {
-        changes &&
-          changes.forEach(([row, prop, oldValue, newValue]: any) => {
-            console.error(row, prop)
-            // Some logic...
-          })
-      },
-      cells: (row: any, column: any, prop: any) => {
-        if (!hot) {
-          return {}
-        }
-        const cellProperties = {}
-        const visualRowIndex = hot.toVisualRow(row)
-        const visualColIndex = hot.toVisualColumn(column)
-
-        if (visualRowIndex === 0 && visualColIndex === 0) {
-          // cellProperties.readOnly = true
-        }
-
-        return cellProperties
-      }
+      afterChange: (changes: any) => {},
+      afterChangeEx(_changes: any) {},
+      ...settings
     }
     const _hot = Handsontable(containerEl.current, _settings)
     setHot(_hot)
@@ -80,31 +87,12 @@ const ListOfPosts = (props: any) => {
 
   useEffect(() => {
     if (hot && !loading && data) {
-      const _posts = _.get(data, 'getPosts.docs')
-      let _data: any = []
-      _posts.forEach((post: any) => {
-        const _post: any = {}
-        _post.title = post.title
-        _post.content = post.content
-        _post.username = post.user.username
-        _post.avatar = post.user.avatar
-        _data.push(_post)
-      })
-      console.error(`_data`, _data)
-      const columns = [
-        { data: 'title', type: 'text' },
-        { data: 'content', type: 'text' },
-        { data: 'username', type: 'text' },
-        { data: 'avatar', renderer: coverRenderer }
-      ]
       hot.updateSettings({
-        data: _data,
-        columns,
+        ...settings,
         readOnly: !isEdit
       })
-      //   hot.set
     }
-  }, [data])
+  }, [settings])
 
   useEffect(() => {
     hot &&
