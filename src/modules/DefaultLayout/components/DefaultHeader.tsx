@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off"*/
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap'

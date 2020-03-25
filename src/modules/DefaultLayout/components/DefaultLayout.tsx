@@ -1,5 +1,6 @@
-import React, { Component, Suspense, useEffect } from 'react'
-import { Redirect, Route, Switch, useHistory, RouteProps } from 'react-router-dom'
+/*eslint no-unused-vars: "off"*/
+import React, { Suspense, useEffect } from 'react'
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
 import * as router from 'react-router-dom'
 import { Container } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
@@ -52,7 +53,7 @@ const DefaultLayout = (props: IDefaultLayoutProps) => {
             <Suspense fallback={loading()}>
               <Switch>
                 {routes.map((route, idx) => {
-                  return route.component ? <Route<IRouteExProps> key={idx} path={route.path} exact={route.exact} name={route.name} render={(props) => (route.component ? <route.component {...props} /> : null)} />: null
+                  return route.component ? <Route<IRouteExProps> key={idx} path={route.path} exact={route.exact} name={route.name} render={(props) => (route.component ? <route.component {...props} /> : null)} /> : null
                 })}
                 <Redirect from="/" to="/dashboard" />
               </Switch>

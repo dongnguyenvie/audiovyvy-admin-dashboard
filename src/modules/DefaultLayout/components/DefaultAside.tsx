@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off"*/
 import React, { Component, ReactNode, useState } from 'react'
 import { Nav, NavItem, NavLink, Progress, TabContent, TabPane, ListGroup, ListGroupItem } from 'reactstrap'
 import PropTypes from 'prop-types'

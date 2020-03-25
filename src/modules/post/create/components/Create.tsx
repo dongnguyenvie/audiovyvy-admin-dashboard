@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import TextEditor from '../../../common/editor/components/TextEditor'
+import TextEditor from '../../../common/editor/'
 import Print from '../../../print/components/index'
 import useDebounce from '../../../../hook/useDebounce'
 
 const Create = (props: any) => {
   const editor: any = useState(null)
-  const [content, setContent] = useState('ssssssssssss')
+  const [content, setContent] = useState('lorem text')
 
   const options = {
     readonly: false // all options from https://xdsoft.net/jodit/doc/

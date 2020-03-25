@@ -1,6 +1,6 @@
 import React from 'react'
 import { IDefaultFooterProps } from '../type'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 
 const defaultProps = {}
 const DefaultFooter = ({ children, ...attributes }: IDefaultFooterProps = defaultProps) => {

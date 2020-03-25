@@ -9,14 +9,14 @@ import 'react-toastify/dist/ReactToastify.css'
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>
 
 // Containers
-const DefaultLayout = React.lazy(() => import('./modules/DefaultLayout/components/DefaultLayout'))
+const DefaultLayout = React.lazy(() => import('./modules/DefaultLayout/'))
 
 // Pages
-const Login = React.lazy(() => import('./modules/pages/login/components/Login'))
-const Register = React.lazy(() => import('./modules/pages/register/components/Register'))
-const Page404 = React.lazy(() => import('./modules/pages/page404/components/Page404'))
-const Page403 = React.lazy(() => import('./modules/pages/page403/components/Page403'))
-const Page500 = React.lazy(() => import('./modules/pages/page500/components/Page500'))
+const Login = React.lazy(() => import('./modules/pages/login/'))
+const Register = React.lazy(() => import('./modules/pages/register/'))
+const Page404 = React.lazy(() => import('./modules/pages/page404/'))
+const Page403 = React.lazy(() => import('./modules/pages/page403/'))
+const Page500 = React.lazy(() => import('./modules/pages/page500/'))
 // const HandsontablePage = React.lazy(() => import('./views/Pages/Handsontable'))
 
 function App() {

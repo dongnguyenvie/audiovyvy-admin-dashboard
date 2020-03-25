@@ -1,10 +1,12 @@
 import keys from './ActionTypeKey'
 import * as IActions from './IActions'
-import { ITestState } from '../models/ITestState'
 
 // import { ICurrentUserState } from '../models/IUserState'
 // import { IAppState, IAppTable } from '../models/IAppState'
-
+interface ITestState {
+  username?: string
+  password?: string
+}
 export function getTestState({ username = '', password = '' }: ITestState): IActions.IGetTestState {
   return {
     type: keys.GET_TEST_STATE,
