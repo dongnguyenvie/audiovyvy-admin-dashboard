@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap'
-import Handsontable, { IHandsontable } from '../../../plugins/handsontable'
+import Handsontable, { IHandsontableEx } from '../../../plugins/handsontable'
 
 const ListOfPosts = (props: any) => {
   const containerEl = useRef(null)
-  const [hot, setHot] = useState<IHandsontable>(null)
+  const [hot, setHot] = useState<IHandsontableEx.Core>(null)
   useEffect(() => {
     const columns = [{ data: 'id', type: 'text' }, { data: 'name' }, { data: 'isActive', type: 'checkbox' }, { data: 'date', type: 'date', dateFormat: 'YYYY-MM-DD' }, { data: 'color', type: 'autocomplete', source: ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white'] }]
     const data = [

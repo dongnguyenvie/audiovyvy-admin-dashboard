@@ -16,6 +16,7 @@ const DefaultFooter = React.lazy(() => import('./DefaultFooter'))
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'))
 const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
+const DEFAULT_ROUTE = '/dashboard'
 const DefaultLayout = (props: IDefaultLayoutProps) => {
   let history = useHistory()
   const { t } = useTranslation()
@@ -55,7 +56,7 @@ const DefaultLayout = (props: IDefaultLayoutProps) => {
                 {routes.map((route, idx) => {
                   return route.component ? <Route<IRouteExProps> key={idx} path={route.path} exact={route.exact} name={route.name} render={(props) => (route.component ? <route.component {...props} /> : null)} /> : null
                 })}
-                <Redirect from="/" to="/dashboard" />
+                <Redirect from="/" to={DEFAULT_ROUTE} />
               </Switch>
             </Suspense>
           </Container>

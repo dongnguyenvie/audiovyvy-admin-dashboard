@@ -4,6 +4,7 @@ const POSTS = gql`
   query getPosts($filters: InputPagingRequest) {
     getPosts(filters: $filters) {
       docs {
+        id
         title
         content
         metaData

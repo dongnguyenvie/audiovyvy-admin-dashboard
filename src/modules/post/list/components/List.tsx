@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react'
-import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap'
-import Handsontable, { IHandsontable } from '../../../../plugins/handsontable'
+import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table, Button } from 'reactstrap'
+import Handsontable, { IHandsontableEx } from '../../../../plugins/handsontable'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PrintTextRaw from '../../../print/components/index'
@@ -11,7 +11,8 @@ import query from '../../../../graphql/query'
 
 const ListOfPosts = (props: any) => {
   const containerEl = useRef(null)
-  const [hot, setHot] = useState<IHandsontable>(null)
+  const [hot, setHot] = useState<IHandsontableEx.Core>(null)
+  const [selected, setSelected] = useState(null)
   const [isEdit, setEditMode] = useState(false)
   const { fetchMore, data, loading } = useQuery(query.POSTS, {
     variables: {
@@ -28,6 +29,7 @@ const ListOfPosts = (props: any) => {
     let _data: any = []
     const _posts = _.get(data, 'getPosts.docs')
     const _columns = [
+      { data: 'id', type: 'text' },
       { data: 'title', type: 'text' },
       { data: 'content', type: 'text' },
       { data: 'username', type: 'text' },
@@ -36,6 +38,7 @@ const ListOfPosts = (props: any) => {
     if (data) {
       _posts.forEach((post: any) => {
         const _post: any = {}
+        _post.id = post.id
         _post.title = post.title
         _post.content = post.content
         _post.username = post.user.username
@@ -49,11 +52,19 @@ const ListOfPosts = (props: any) => {
   }, [data])
 
   useEffect(() => {
-    const colHeaders = ['title', 'content', 'username', 'avatar']
-    const _settings = {
+    const colHeaders = ['id', 'title', 'content', 'username', 'avatar']
+    const _settings: IHandsontableEx.GridSettings = {
       colHeaders,
-      afterChange: (changes: any) => {},
-      afterChangeEx(_changes: any) {},
+      stretchH: 'all',
+      hiddenColumns: {
+        columns: [0]
+      },
+      afterChange: (changes) => {},
+      afterChangeEx(_changes) {},
+      afterSelectionEx: (row, prop) => {
+        // console.log(`prop`, prop)
+      },
+      afterSelectionByProp: (row, prop) => {},
       ...settings
     }
     const _hot = Handsontable(containerEl.current, _settings)
@@ -94,8 +105,19 @@ const ListOfPosts = (props: any) => {
               </div>
             </CardHeader>
             <CardBody>
-              <button onClick={() => setEditMode(!isEdit)}>Change mode</button>
-              <div className={classNames('handsontable-wrapper', { 'edit-mode': isEdit })}>
+              <Row className="justify-content-end">
+                <div className="pr-3">
+                  <Button color="primary" size="sm" className="p-2 mr-2" onClick={() => setEditMode(!isEdit)}>
+                    Change mode
+                  </Button>
+                  <Button color="primary" size="sm" className="p-2">
+                    <i className="fa fa-edit fa-lg"></i>edit
+                  </Button>
+                </div>
+              </Row>
+
+              {/* <span className="text-muted">(alias)</span> */}
+              <div className={classNames('handsontable-wrapper mt-3', { 'edit-mode': isEdit })}>
                 <div ref={containerEl} className="js-handsontable"></div>
               </div>
             </CardBody>
