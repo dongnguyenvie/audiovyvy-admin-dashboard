@@ -1,6 +1,6 @@
 import Handsontable from 'handsontable'
 
-export const coverRenderer: typeof Handsontable.renderers.TextRenderer = function(this: typeof Handsontable, instance, td, row, col, prop, value, cellProperties) {
+export const imageRenderer: typeof Handsontable.renderers.TextRenderer = function(this: typeof Handsontable, instance, td, row, col, prop, value, cellProperties) {
   let escaped = Handsontable.helper.stringify(value)
   let img = null
   if (escaped.indexOf('http') === 0) {

@@ -11,24 +11,7 @@ import { onSetUser } from '../../../../reducers/authentication/Auth.reducer'
 import { ILoginProps, loginActions } from '../types'
 import _ from 'lodash'
 import '../style.scss'
-
-const MUTATION_LOGIN = gql`
-  mutation login($username: String!, $password: String!, $rememberMe: Boolean!) {
-    login(user: { username: $username, password: $password, rememberMe: $rememberMe }) {
-      token
-      user {
-        username
-        fullName
-        avatar
-        email
-        phone
-        roles {
-          id
-        }
-      }
-    }
-  }
-`
+import mutation from '../../../../graphql/mutation'
 
 const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
   let history = useHistory()
@@ -57,7 +40,7 @@ const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
     }
   }
 
-  const [handleLogin, { called, loading, data, error }] = useMutation(MUTATION_LOGIN)
+  const [handleLogin, { called, loading, data, error }] = useMutation(mutation.LOGIN)
 
   return (
     <div className="app flex-row align-items-center">

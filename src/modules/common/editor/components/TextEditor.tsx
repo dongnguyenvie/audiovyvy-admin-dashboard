@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, forwardRef } from 'react'
+/*eslint no-unused-vars: "off"*/
+import React, { useRef, useEffect, forwardRef } from 'react'
 import Jodit, { IJodit } from '../../../../plugins/jodit'
 import { ITextEditor } from '../type'
-import Print from '../../../print/components/'
 
 // {@see https://github.com/jodit/jodit-react}
 const TextEditor = forwardRef(({ value, options, onChange, onBlur, tabIndex, name = '' }: ITextEditor, ref: any) => {

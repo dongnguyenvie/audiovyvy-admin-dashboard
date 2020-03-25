@@ -2,40 +2,18 @@ import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap'
 import Handsontable, { IHandsontable } from '../../../../plugins/handsontable'
 import { useQuery } from '@apollo/react-hooks'
-import qgl from 'graphql-tag'
+import gql from 'graphql-tag'
 import PrintTextRaw from '../../../print/components/index'
 import _ from 'lodash'
-import { coverRenderer } from '../../../../plugins/handsontable/renderers/ImageRender'
+import { imageRenderer } from '../../../../plugins/handsontable/renderers/ImageRender'
 import classNames from 'classnames'
-
-const QUERY_POSTS = qgl`
-query getPosts($filters: InputPagingRequest) {
-    getPosts(filters: $filters) {
-      docs {
-        title
-        content
-        metaData
-        categories
-        user {
-          id
-          username
-          fullName
-          avatar
-        }
-        createdAt
-        updatedAt
-      }
-      prevPage
-      nextPage
-    }
-  }
-`
+import query from '../../../../graphql/query'
 
 const ListOfPosts = (props: any) => {
   const containerEl = useRef(null)
   const [hot, setHot] = useState<IHandsontable>(null)
   const [isEdit, setEditMode] = useState(false)
-  const { fetchMore, data, loading } = useQuery(QUERY_POSTS, {
+  const { fetchMore, data, loading } = useQuery(query.POSTS, {
     variables: {
       filters: {
         page: 1,
@@ -53,7 +31,7 @@ const ListOfPosts = (props: any) => {
       { data: 'title', type: 'text' },
       { data: 'content', type: 'text' },
       { data: 'username', type: 'text' },
-      { data: 'avatar', renderer: coverRenderer }
+      { data: 'avatar', renderer: imageRenderer }
     ]
     if (data) {
       _posts.forEach((post: any) => {
@@ -100,7 +78,6 @@ const ListOfPosts = (props: any) => {
         readOnly: !isEdit
       })
   }, [isEdit])
-  window.dongdong = hot
 
   return (
     <div className="animated fadeIn">
