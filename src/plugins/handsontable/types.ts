@@ -2,6 +2,7 @@ import Handsontable from 'handsontable'
 
 export interface GridSettings extends Handsontable.GridSettings {
   stretchH?: any
+  selectionMode?: any
   afterChangeEx?: (objChanges: IObjChanges[], changes: Handsontable.CellChange[] | null, source: Handsontable.ChangeSource) => void
   afterSelectionEx?: (row: number, prop: string, row2: number, prop2: string, preventScrolling: { value: boolean }, selectionLayerLevel: number) => void
 }

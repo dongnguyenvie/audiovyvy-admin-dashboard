@@ -51,7 +51,7 @@ const routes: Array<IRoutes> = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/post/list', name: 'list', component: ListOfPosts },
-  { path: '/post/create', name: 'create list', component: CreatePost },
+  { path: '/post/create/:id', name: 'create list', component: CreatePost },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

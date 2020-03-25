@@ -6,7 +6,7 @@ const HandsontableEx: IHandsontableEx = (container, options = {}) => {
   const _options = {
     licenseKey: 'non-commercial-and-evaluation',
     stretchH: 'last', // 'none' | 'all' | 'last';
-    // selectionMode?: 'single' | 'range' | 'multiple';
+    selectionMode: 'single', //'single' | 'range' | 'multiple';
     // preventOverflow?: boolean | 'vertical' | 'horizontal';
     // disableVisualSelection?: boolean | 'current' | 'area' | 'header' | ('current' | 'area' | 'header')[];
     // fillHandle?: boolean | 'vertical' | 'horizontal' | autoFill.Settings;
@@ -14,6 +14,7 @@ const HandsontableEx: IHandsontableEx = (container, options = {}) => {
     currentRowClassName: 'currentRow',
     // invalidCellClassName: 'highlight--error',
     readOnly: true,
+    colWidths: 100, // refs https://handsontable.com/docs/7.1.1/Options.html#colWidths
     ...options
   }
   // Custom afterChange hook

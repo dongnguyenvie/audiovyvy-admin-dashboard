@@ -2,19 +2,21 @@ import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table, Button } from 'reactstrap'
 import Handsontable, { IHandsontableEx } from '../../../../plugins/handsontable'
 import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 import PrintTextRaw from '../../../print/components/index'
 import _ from 'lodash'
 import { imageRenderer } from '../../../../plugins/handsontable/renderers/ImageRender'
 import classNames from 'classnames'
 import query from '../../../../graphql/query'
+import { useRouterEx } from '../../../../hook/useRouterEx'
 
 const ListOfPosts = (props: any) => {
   const containerEl = useRef(null)
   const [hot, setHot] = useState<IHandsontableEx.Core>(null)
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState('')
   const [isEdit, setEditMode] = useState(false)
-  const { fetchMore, data, loading } = useQuery(query.POSTS, {
+  const routerEx = useRouterEx()
+
+  const { fetchMore, data, loading } = useQuery(query.GET_POSTS, {
     variables: {
       filters: {
         page: 1,
@@ -24,8 +26,8 @@ const ListOfPosts = (props: any) => {
     }
   })
 
-  const settings: any = useMemo(() => {
-    let _settings: any = {}
+  const settings: IHandsontableEx.GridSettings = useMemo(() => {
+    let _settings: IHandsontableEx.GridSettings = {}
     let _data: any = []
     const _posts = _.get(data, 'getPosts.docs')
     const _columns = [
@@ -52,6 +54,17 @@ const ListOfPosts = (props: any) => {
   }, [data])
 
   useEffect(() => {
+    const _hot = Handsontable(containerEl.current)
+    setHot(_hot)
+    return () => {
+      hot && hot.destroy()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!hot) {
+      return
+    }
     const colHeaders = ['id', 'title', 'content', 'username', 'avatar']
     const _settings: IHandsontableEx.GridSettings = {
       colHeaders,
@@ -59,20 +72,18 @@ const ListOfPosts = (props: any) => {
       hiddenColumns: {
         columns: [0]
       },
-      afterChange: (changes) => {},
-      afterChangeEx(_changes) {},
-      afterSelectionEx: (row, prop) => {
-        // console.log(`prop`, prop)
+      afterChange: (changes) => {
+        console.log(`change`, changes)
       },
-      afterSelectionByProp: (row, prop) => {},
+      afterChangeEx: (_changes) => {},
+      afterSelectionByProp: (row, prop) => {
+        const id = hot.getDataAtRowProp(row, 'id')
+        setSelected(id)
+      },
       ...settings
     }
-    const _hot = Handsontable(containerEl.current, _settings)
-    setHot(_hot)
-    return () => {
-      hot && hot.destroy()
-    }
-  }, [])
+    hot.updateSettings(_settings)
+  }, [hot])
 
   useEffect(() => {
     if (hot && !loading && data) {
@@ -89,6 +100,18 @@ const ListOfPosts = (props: any) => {
         readOnly: !isEdit
       })
   }, [isEdit])
+
+  const handleEdit = () => {
+    if (!selected) {
+      return
+    }
+    routerEx.push({
+      path: '/post/create/:id',
+      params: {
+        id: selected
+      }
+    })
+  }
 
   return (
     <div className="animated fadeIn">
@@ -110,16 +133,15 @@ const ListOfPosts = (props: any) => {
                   <Button color="primary" size="sm" className="p-2 mr-2" onClick={() => setEditMode(!isEdit)}>
                     Change mode
                   </Button>
-                  <Button color="primary" size="sm" className="p-2">
+                  <Button color="primary" size="sm" className="p-2" onClick={handleEdit} disabled={!selected}>
                     <i className="fa fa-edit fa-lg"></i>edit
                   </Button>
                 </div>
               </Row>
-
-              {/* <span className="text-muted">(alias)</span> */}
               <div className={classNames('handsontable-wrapper mt-3', { 'edit-mode': isEdit })}>
                 <div ref={containerEl} className="js-handsontable"></div>
               </div>
+              {selected}
             </CardBody>
           </Card>
         </Col>
