@@ -18,11 +18,11 @@ let initDataPost = {
 }
 
 const Create = (props: any) => {
+  const { user, uuid } = props
   const { t } = useTranslation()
   const editor: any = useRef(null)
   const [handleCreatePost, { data, loading }] = useMutation(mutation.CREATE_POST)
   const [dataPost, setPostData] = useState(initDataPost) as any
-
   const handleChange = (key: any, value: any) => {
     if (dataPost[key] === value) {
       return
@@ -42,7 +42,7 @@ const Create = (props: any) => {
       variables: {
         post: {
           ...dataPost,
-          blog: '5e7c81d5f8605e02803f2354'
+          blog: user.blog
         }
       }
     }

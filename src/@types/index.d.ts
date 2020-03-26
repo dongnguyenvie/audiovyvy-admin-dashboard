@@ -5,4 +5,5 @@ declare module '@coreui/react'
 interface Window {
   dongdong: any
   hehe: any
+  editorInstance: any
 }
