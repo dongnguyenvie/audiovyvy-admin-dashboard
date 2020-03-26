@@ -1,2 +1,5 @@
+export const PREFIX = '__audio_'
 
-export default {}
+export enum localStorageKeys {
+  AUTH = 'auth'
+}

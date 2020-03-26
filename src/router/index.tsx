@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Route, useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { connect } from 'react-redux'
+import { onSetUser } from '../reducers/authentication/Auth.reducer'
+import LocalStorage from '../plugins/localstorage'
+import { localStorageKeys } from '../constants'
 // import { onGetUser } from '../reducers/authentication/Auth.reducer'
 // import { toast } from 'react-toastify'
 
@@ -13,12 +16,18 @@ interface IBeforeRoute {
   isAuth?: boolean
   onGetUser?: Function
   user?: any
+  onSetUser?: Function
 }
-const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...otherProps }: IBeforeRoute) => {
+const RouteExtension = ({ component: Component, isAuth, onGetUser, user, onSetUser = () => {}, ...otherProps }: IBeforeRoute) => {
   let history = useHistory()
   if (isAuth) {
     if (!user.isLogin) {
-      history.push('/login')
+      const _user = LocalStorage.get(localStorageKeys.AUTH)
+      if (_user.isRemember) {
+        onSetUser(_user)
+      } else {
+        history.push('/login')
+      }
     }
   }
 
@@ -32,7 +41,7 @@ const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...othe
       <Route
         render={(otherProps) => (
           <>
-            <Component uuid={_uuid} {...otherProps}>
+            <Component uuid={_uuid} {...otherProps} user={user}>
               {AfterRoute()}
             </Component>
           </>
@@ -46,7 +55,7 @@ const mapStateToProps = (state: any) => ({
   user: state.user
 })
 const mapDispatchToProps = {
-  // onGetUser: onGetUser
+  onSetUser: onSetUser
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)

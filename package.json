@@ -20,6 +20,7 @@
     "add": "^2.0.6",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
+    "apollo-link-context": "^1.0.19",
     "apollo-link-http": "^1.5.16",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",

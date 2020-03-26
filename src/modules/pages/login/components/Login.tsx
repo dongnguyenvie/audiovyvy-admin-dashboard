@@ -12,10 +12,12 @@ import { ILoginProps, loginActions } from '../types'
 import _ from 'lodash'
 import '../style.scss'
 import mutation from '../../../../graphql/mutation'
+import { localStorageKeys } from '../../../../constants'
+import LocalStorage from '../../../../plugins/localstorage'
 
 const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
   let history = useHistory()
-  const handleCallback = (actions: keyof typeof loginActions, data: any) => {
+  const handleCallback = (actions: keyof typeof loginActions, data: any, isRemember: boolean = false) => {
     if (actions === loginActions.SUCCESS) {
       toast.success('Login success', {
         position: toast.POSITION.BOTTOM_RIGHT
@@ -23,12 +25,17 @@ const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
       const _token = data.login.token
       let _user = {
         ...data.login.user,
-        isLogin: true
+        isLogin: true,
+        isRemember
       }
       _user.roles = data.login.user.roles.map((role: { id: string }) => role.id)
       _user.token = _token
-      console.error(`user`, _user)
       props?.onSetUser(_user)
+      if (isRemember) {
+        LocalStorage.set(localStorageKeys.AUTH, _user)
+      } else {
+        LocalStorage.remove(localStorageKeys.AUTH)
+      }
 
       setTimeout(() => {
         history.push('/')

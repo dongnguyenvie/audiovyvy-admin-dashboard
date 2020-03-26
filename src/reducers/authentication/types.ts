@@ -10,7 +10,8 @@ export interface IUSER {
   phone?: string
   count?: number
   roles?: Array<string>
-  isLogin: boolean
+  isLogin: boolean,
+  isRemember: boolean
 }
 
 export interface IGetUserAction {

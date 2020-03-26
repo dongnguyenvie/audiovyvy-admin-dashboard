@@ -5,6 +5,8 @@ export interface IRouteExProps extends RouteProps {
 }
 export interface IDefaultLayoutProps extends RouteProps {
   name?: string
+  user: any
+  uuid: string
 }
 interface IDefaultProps {
   children?: ReactNode

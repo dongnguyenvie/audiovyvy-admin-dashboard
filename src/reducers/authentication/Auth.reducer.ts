@@ -2,7 +2,8 @@ import { Reducer } from 'redux'
 import { IUSER, ActionTypeKeys, ActionTypes, IGetUserAction, ISetUserAction } from './types'
 
 const initState = {
-  isLogin: false
+  isLogin: false,
+  isRemember: false
 }
 export const getUserReducer: Reducer<IUSER, ActionTypes> = (state = initState, action): IUSER => {
   switch (action.type) {

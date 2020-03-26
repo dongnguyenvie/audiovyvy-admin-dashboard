@@ -18,6 +18,7 @@ const loading = () => <div className="animated fadeIn pt-1 text-center">Loading.
 
 const DEFAULT_ROUTE = '/dashboard'
 const DefaultLayout = (props: IDefaultLayoutProps) => {
+  const { uuid, user } = props
   let history = useHistory()
   const { t } = useTranslation()
   // Map to translation text
@@ -54,7 +55,7 @@ const DefaultLayout = (props: IDefaultLayoutProps) => {
             <Suspense fallback={loading()}>
               <Switch>
                 {routes.map((route, idx) => {
-                  return route.component ? <Route<IRouteExProps> key={idx} path={route.path} exact={route.exact} name={route.name} render={(props) => (route.component ? <route.component {...props} /> : null)} /> : null
+                  return route.component ? <Route<IRouteExProps> key={idx} path={route.path} exact={route.exact} name={route.name} render={(props) => (route.component ? <route.component {...props} uuid={uuid} user={user} /> : null)} /> : null
                 })}
                 <Redirect from="/" to={DEFAULT_ROUTE} />
               </Switch>

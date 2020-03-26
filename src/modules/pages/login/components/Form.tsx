@@ -81,7 +81,7 @@ const LoginFormik = withFormik<ILoginFormProps, ILoginFormValues>({
         }
       })
       .then((data: any) => {
-        props.onCallback(loginActions.SUCCESS, data.data)
+        props.onCallback(loginActions.SUCCESS, data.data, rememberMe)
       })
       .catch((err: any) => {
         props.onCallback(loginActions.FAIL)
