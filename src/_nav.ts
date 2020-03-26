@@ -38,6 +38,11 @@ let items: Array<IItem> = [
     icon: 'icon-drop'
   },
   {
+    name: 'create',
+    url: '/post/create',
+    icon: 'icon-drop'
+  },
+  {
     title: true,
     name: 'Theme',
     wrapper: {

@@ -17,8 +17,21 @@ const LOGIN = gql`
     }
   }
 `
+const CREATE_POST = gql`
+  mutation CREATE_POST($post: InputCreatePost!) {
+    createPost(post: $post) {
+      success
+      result {
+        id
+        title
+        content
+      }
+    }
+  }
+`
 const mutation = {
-  LOGIN
+  LOGIN,
+  CREATE_POST
 }
 
 export default mutation

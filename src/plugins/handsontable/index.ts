@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off"*/
 import Handsontable from 'handsontable'
 import _ from 'lodash'
 import { IHandsontableEx, IObjChanges, GridSettings as _GridSettings } from './types'
@@ -12,6 +13,7 @@ const HandsontableEx: IHandsontableEx = (container, options = {}) => {
     // fillHandle?: boolean | 'vertical' | 'horizontal' | autoFill.Settings;
     currentColClassName: 'currentColumn',
     currentRowClassName: 'currentRow',
+    wordWrap:false,
     // invalidCellClassName: 'highlight--error',
     readOnly: true,
     colWidths: 100, // refs https://handsontable.com/docs/7.1.1/Options.html#colWidths

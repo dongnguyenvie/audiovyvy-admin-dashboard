@@ -1,60 +1,75 @@
 /*eslint no-unused-vars: "off"*/
 import React, { useEffect, useRef, useState } from 'react'
 import TextEditor from '../../../common/editor/'
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Col, Collapse, DropdownItem, DropdownMenu, DropdownToggle, Fade, Form, FormGroup, FormText, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupButtonDropdown, InputGroupText, Label, Row } from 'reactstrap'
 import Print from '../../../print/components/index'
 // import useDebounce from '../../../../hook/useDebounce'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import query from '../../../../graphql/query'
 import _ from 'lodash'
 import { useTranslation } from 'react-i18next'
-import TitleFormik from './TitleForm'
+import PostForm from '../../common/PostForm'
+import { postKeys } from '../../types'
+import mutation from '../../../../graphql/mutation'
+import { toast } from 'react-toastify'
+
+let initDataPost = {
+  content: '',
+  title: ''
+}
 
 const Create = (props: any) => {
   const { t } = useTranslation()
-  console.error(`props`, props)
-  const editor: any = useState(null)
-  const { data, loading, error } = useQuery(query.GET_POST_BY_ID, {
-    variables: {
-      post: {
-        id: props.match.params.id
+  const editor: any = useRef(null)
+  const [handleCreatePost, { data, loading }] = useMutation(mutation.CREATE_POST)
+  const [dataPost, setPostData] = useState(initDataPost) as any
+
+  const handleChange = (key: any, value: any) => {
+    if (dataPost[key] === value) {
+      return
+    }
+    let _data = _.cloneDeep(dataPost)
+    if (key === postKeys.TITLE) {
+      _data.title = value
+    }
+    if (key === postKeys.CONTENT) {
+      _data.content = value
+    }
+    setPostData(_data)
+  }
+
+  const handleSubmit = (options: any) => {
+    const _options = {
+      variables: {
+        post: {
+          ...dataPost,
+          blog: '5e7c81d5f8605e02803f2354'
+        }
       }
     }
-  })
-  const [dataSet, setData] = useState('') as any
-  const [_title, _setTitle] = useState('') as any
-  const options = {
-    readonly: false // all options from https://xdsoft.net/jodit/doc/
-  }
-  const handleChange = (value: any) => {
-    setData(value)
+    handleCreatePost(_options)
+      .then((_data: any) => {
+        toast.success('Create post success', {
+          position: toast.POSITION.BOTTOM_RIGHT
+        })
+      })
+      .catch((err: any) => {
+        toast.error('Fail', {
+          position: toast.POSITION.BOTTOM_RIGHT
+        })
+      })
   }
 
-  useEffect(() => {
-    if (!loading && data) {
-      const _data = _.get(data, 'getPost.result')
-      console.error(111, data)
-      _setTitle(_data.title)
-      setData(_data)
-    }
-  }, [data])
+  // useEffect(() => {
+  //   if (!loading && data) {
+  //     const _data = _.get(data, 'getPost.result')
+  //     setPostData(_data)
+  //   }
+  // }, [data])
 
   window.dongdong = editor
-  return (
-    <div>
-      <TitleFormik initTitle={dataSet?.content} />
-      <TextEditor
-        ref={editor}
-        value={dataSet?.content}
-        options={options}
-        tabIndex={1} // tabIndex of textarea
-        onBlur={(newContent: any) => handleChange(newContent)} // preferred to use only this option to update the content for performance reasons
-        onChange={(newContent: any) => {
-          //   handleChange(newContent)
-        }}
-      />
-      <Print value={dataSet} />
-    </div>
-  )
+  return <PostForm ref={editor} data={dataPost} onChange={handleChange} onSubmit={handleSubmit} />
+  // return (
+  //   <TextEditor value={"aaa"}></TextEditor>
+  // )
 }
 export default Create

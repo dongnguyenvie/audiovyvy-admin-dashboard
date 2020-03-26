@@ -37,9 +37,9 @@ const Users = React.lazy(() => import('./views/Users/Users'))
 const User = React.lazy(() => import('./views/Users/User'))
 
 // Add more
-const ListOfPosts = React.lazy(() => import('./modules/post/list/components/List'))
-const CreatePost = React.lazy(() => import('./modules/post/create/components/Create'))
-
+const ListOfPosts = React.lazy(() => import('./modules/post/list/'))
+const CreatePost = React.lazy(() => import('./modules/post/create/'))
+const EditPost = React.lazy(() => import('./modules/post/edit/'))
 interface IRoutes {
   name?: string
   path?: string
@@ -51,7 +51,8 @@ const routes: Array<IRoutes> = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/post/list', name: 'list', component: ListOfPosts },
-  { path: '/post/create/:id', name: 'create list', component: CreatePost },
+  { path: '/post/create', name: 'create list', component: CreatePost },
+  { path: '/post/edit/:id', name: 'edit post', component: EditPost },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

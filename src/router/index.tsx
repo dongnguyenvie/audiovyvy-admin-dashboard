@@ -21,11 +21,6 @@ const RouteExtension = ({ component: Component, isAuth, onGetUser, user, ...othe
       history.push('/login')
     }
   }
-  useEffect(() => {
-    return () => {
-      
-    }
-  }, [])
 
   const AfterRoute = () => {
     console.log(`>>>>>>>>> AfterRoute`, otherProps)

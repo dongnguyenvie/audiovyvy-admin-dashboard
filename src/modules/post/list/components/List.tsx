@@ -20,7 +20,7 @@ const ListOfPosts = (props: any) => {
     variables: {
       filters: {
         page: 1,
-        limit: 10,
+        limit: 20,
         populate: 'user'
       }
     }
@@ -106,7 +106,7 @@ const ListOfPosts = (props: any) => {
       return
     }
     routerEx.push({
-      path: '/post/create/:id',
+      path: '/post/edit/:id',
       params: {
         id: selected
       }
