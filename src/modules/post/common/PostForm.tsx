@@ -34,7 +34,7 @@ const PostForm = forwardRef((props: IPostForm & any, ref: any) => {
       <>
         <TitleFormik initTitle={data?.title} onChange={handleChange} />
         <Row>
-          <Col xs="10" key={uuidv4()}>
+          <Col xs="10">
             <TextEditor
               ref={ref}
               value={data?.content}
