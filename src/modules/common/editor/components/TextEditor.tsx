@@ -1,11 +1,12 @@
 /*eslint no-unused-vars: "off"*/
-import React, { useRef, useEffect, forwardRef } from 'react'
+import React, { useRef, useEffect, forwardRef, useState } from 'react'
 import Jodit, { IJodit } from '../../../../plugins/jodit'
 import { ITextEditor } from '../type'
 
 // {@see https://github.com/jodit/jodit-react}
 const TextEditor = forwardRef(({ value, options, onChange, onBlur, tabIndex, name = '' }: ITextEditor, ref: any) => {
   const textArea: any = useRef(null)
+
   useEffect(() => {
     if (!ref) {
       return
@@ -28,11 +29,17 @@ const TextEditor = forwardRef(({ value, options, onChange, onBlur, tabIndex, nam
     }
 
     const element = textArea.current
-    textArea.current = Jodit(element, options)
+    let editor = Jodit(element, options)
+    window.editorInstance = editor
+    textArea.current = editor
 
     textArea.current.value = value
-    textArea.current.events.on('blur', () => blurHandler(textArea.current.value))
-    textArea.current.events.on('change', () => changeHandler(textArea.current.value))
+    textArea.current.events.on('blur', () => {
+      blurHandler(textArea.current?.value)
+    })
+    textArea.current.events.on('change', () => {
+      changeHandler(textArea.current?.value)
+    })
     textArea.current.workplace.tabIndex = tabIndex || -1
 
     return () => {

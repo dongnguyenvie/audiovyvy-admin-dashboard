@@ -1,5 +1,6 @@
 export const PREFIX = '__audio_'
 
 export enum localStorageKeys {
-  AUTH = 'auth'
+  AUTH = 'auth',
+  TOKEN = 'token'
 }

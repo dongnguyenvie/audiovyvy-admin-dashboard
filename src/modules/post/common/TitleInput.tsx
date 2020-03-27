@@ -5,20 +5,8 @@ import { withFormik, FormikProps } from 'formik'
 import * as Yup from 'yup'
 import { useTranslation } from 'react-i18next'
 import Print from '../../print/components'
-import { postKeys } from '../types'
+import { postKeys, ITitleFormValues, IOtherFormValues, ITitleFormProps } from '../types'
 import { stringToSlug } from '../../common/methods/stringToSlug'
-
-interface ITitleFormProps {
-  initTitle?: string
-  onChange?: Function
-}
-interface ITitleFormValues {
-  titleValue?: string
-  onChange?: Function
-}
-interface IOtherFormValues {
-  onChange?: any
-}
 
 const TitleForm = (props: FormikProps<ITitleFormValues> & IOtherFormValues) => {
   const { handleChange, values, onChange, handleBlur } = props
@@ -33,7 +21,10 @@ const TitleForm = (props: FormikProps<ITitleFormValues> & IOtherFormValues) => {
         <FormGroup>
           <Label htmlFor="name">{t('editPost')}</Label>
           <Input className="mb-2" name="titleValue" type="text" placeholder={t('enterTitle')} value={values.titleValue} onChange={handleChange} onBlur={_handleChange} />
-          <b className="ml-1">{t('url')}: </b><a>{stringToSlug(values.titleValue)}</a>
+          <b className="ml-1">{t('url')}: </b>
+          <a href="/" onClick={() => {}}>
+            {stringToSlug(values.titleValue)}
+          </a>
         </FormGroup>
       </Col>
     </Row>

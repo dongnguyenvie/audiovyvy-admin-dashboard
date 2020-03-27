@@ -1,5 +1,5 @@
 /*eslint no-unused-vars: "off"*/
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import TextEditor from '../../../common/editor/'
 import Print from '../../../print/components/index'
 // import useDebounce from '../../../../hook/useDebounce'
@@ -11,34 +11,35 @@ import PostForm from '../../common/PostForm'
 import { postKeys } from '../../types'
 import mutation from '../../../../graphql/mutation'
 import { toast } from 'react-toastify'
+import { ICreatePost } from '../types'
 
-let initDataPost = {
-  content: '',
-  title: ''
-}
-
-const Create = (props: any) => {
+const Create = (props: ICreatePost) => {
   const { user, uuid } = props
   const { t } = useTranslation()
   const editor: any = useRef(null)
   const [handleCreatePost, { data, loading }] = useMutation(mutation.CREATE_POST)
-  const [dataPost, setPostData] = useState(initDataPost) as any
-  const handleChange = (key: any, value: any) => {
-    if (dataPost[key] === value) {
-      return
-    }
-    let _data = _.cloneDeep(dataPost)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+
+  const handleChange = useCallback((key: string, value: string) => {
     if (key === postKeys.TITLE) {
-      _data.title = value
+      setTitle(value)
     }
     if (key === postKeys.CONTENT) {
-      _data.content = value
+      setContent(value)
     }
-    setPostData(_data)
-  }
+  }, [])
 
-  const handleSubmit = (options: any) => {
+  const dataPost = useMemo(() => {
+    return {
+      title,
+      content
+    }
+  }, [title, content])
+
+  const handleSubmit = (options: any = {}) => {
     const _options = {
+      ...options,
       variables: {
         post: {
           ...dataPost,
@@ -59,17 +60,11 @@ const Create = (props: any) => {
       })
   }
 
-  // useEffect(() => {
-  //   if (!loading && data) {
-  //     const _data = _.get(data, 'getPost.result')
-  //     setPostData(_data)
-  //   }
-  // }, [data])
-
-  window.dongdong = editor
-  return <PostForm ref={editor} data={dataPost} onChange={handleChange} onSubmit={handleSubmit} />
-  // return (
-  //   <TextEditor value={"aaa"}></TextEditor>
-  // )
+  return (
+    <>
+      <PostForm key={uuid} ref={editor} data={dataPost} onChange={handleChange} onSubmit={handleSubmit} />
+      <Print value={dataPost} />
+    </>
+  )
 }
 export default Create

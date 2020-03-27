@@ -94,11 +94,6 @@ const LoginForm = withFormik<LoginFormProps, FormValues>({
       }
     })
     setSubmitting(false)
-  },
-
-  mapValuesToPayload(payload) {
-    console.error(1111, payload)
-    return payload
   }
 })(InnerForm)
 

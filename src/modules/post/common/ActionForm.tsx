@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Col, Collapse, DropdownItem, DropdownMenu, DropdownToggle, Fade, Form, FormGroup, FormText, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupButtonDropdown, InputGroupText, Label, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import Print from '../../print/components'
+import { IActionForm } from '../types'
 
-const ActionForm = (props: any) => {
+const ActionForm = (props: IActionForm) => {
+  const { onSubmit } = props
   const [collapse, setCollapse] = useState(true)
   const [status, setStatus] = useState('pending')
   const [format, setFormat] = useState('video')
@@ -12,7 +14,7 @@ const ActionForm = (props: any) => {
     setStatus('setStatus')
   }
   const handleSubmit = (e: any) => {
-    props.onSubmit()
+    onSubmit && onSubmit()
   }
 
   const toggleCollapse = (e: any) => {

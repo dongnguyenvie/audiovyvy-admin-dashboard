@@ -29,13 +29,14 @@ const LoginPage = (props: ILoginProps & { onSetUser: typeof onSetUser }) => {
         isRemember
       }
       _user.roles = data.login.user.roles.map((role: { id: string }) => role.id)
-      _user.token = _token
+      // _user.token = _token
       props?.onSetUser(_user)
       if (isRemember) {
         LocalStorage.set(localStorageKeys.AUTH, _user)
       } else {
         LocalStorage.remove(localStorageKeys.AUTH)
       }
+      LocalStorage.set(localStorageKeys.TOKEN, _token)
 
       setTimeout(() => {
         history.push('/')
