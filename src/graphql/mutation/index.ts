@@ -31,9 +31,19 @@ const CREATE_POST = gql`
     }
   }
 `
+
+const DELETE_POST_BY_ID = gql`
+  mutation deletePost($post: InputRemovePost!) {
+    deletePost(post: $post) {
+      success
+      message
+    }
+  }
+`
 const mutation = {
   LOGIN,
-  CREATE_POST
+  CREATE_POST,
+  DELETE_POST_BY_ID
 }
 
 export default mutation
