@@ -13,8 +13,8 @@ import ActionForm from './ActionForm'
 import { v4 as uuidv4 } from 'uuid'
 import { IPostForm, postKeys } from '../types'
 
-const PostForm = forwardRef((props: IPostForm & any, ref: any) => {
-  const { data, onChange, onSubmit, onBur } = props
+const PostForm = forwardRef((props: IPostForm, ref: any) => {
+  const { data, onChange, onSubmit, onBur, forceUpdateCount = 0 } = props
 
   const options = {}
   const handleChange = (key: string, value: string) => {
@@ -43,7 +43,7 @@ const PostForm = forwardRef((props: IPostForm & any, ref: any) => {
         }}
       />
     ),
-    []
+    [forceUpdateCount]
   )
   return (
     <>

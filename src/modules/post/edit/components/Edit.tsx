@@ -1,5 +1,5 @@
 /*eslint no-unused-vars: "off"*/
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import TextEditor from '../../../common/editor/'
 import Print from '../../../print/components/index'
 // import useDebounce from '../../../../hook/useDebounce'
@@ -9,10 +9,14 @@ import _ from 'lodash'
 import { useTranslation } from 'react-i18next'
 import PostForm from '../../common/PostForm'
 import { postKeys } from '../../types'
+import useForceUpdate from '../../../../hook/useForceUpdate'
 
 const EditPost = (props: any) => {
   const { t } = useTranslation()
   const editor: any = useState(null)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [forceUpdateCount, forceUpdate] = useForceUpdate()
   const { data, loading, error } = useQuery(query.GET_POST_BY_ID, {
     variables: {
       post: {
@@ -20,27 +24,40 @@ const EditPost = (props: any) => {
       }
     }
   })
-  const [dataPost, setPostData] = useState('') as any
+  // const [dataPost, setPostData] = useState('') as any
+
+  const dataPost = useMemo(
+    () => ({
+      title,
+      content
+    }),
+    [title, content]
+  )
 
   const handleChange = (key: any, value: any) => {
-    let _data = _.cloneDeep(dataPost)
     if (key === postKeys.TITLE) {
-      _data.title = value
+      setTitle(value)
     }
     if (key === postKeys.CONTENT) {
-      _data.content = value
+      setContent(value)
     }
-    setPostData(_data)
   }
 
   useEffect(() => {
     if (!loading && data) {
       const _data = _.get(data, 'getPost.result')
-      setPostData(_data)
+      setTitle(_data.title)
+      setContent(_data.content)
+      forceUpdate()
     }
   }, [data])
 
   window.dongdong = editor
-  return <PostForm data={dataPost} onChange={handleChange} />
+  return (
+    <>
+      <PostForm data={dataPost} onChange={handleChange} forceUpdateCount={forceUpdateCount} />
+      <Print value={dataPost}></Print>
+    </>
+  )
 }
 export default EditPost

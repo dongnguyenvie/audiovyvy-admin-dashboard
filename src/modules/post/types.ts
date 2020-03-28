@@ -5,8 +5,10 @@ export enum postKeys {
 
 export interface IPostForm {
   data?: any
-  onChange?: any
-  onBur?: any
+  onChange?: Function
+  onBur?: Function
+  onSubmit?: Function
+  forceUpdateCount?: number
 }
 export interface ITitleFormProps {
   initTitle?: string
