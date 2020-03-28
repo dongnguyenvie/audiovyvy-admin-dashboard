@@ -37,28 +37,31 @@ const Create = (props: ICreatePost) => {
     }
   }, [title, content])
 
-  const handleSubmit = (options: any = {}) => {
-    const _options = {
-      ...options,
-      variables: {
-        post: {
-          ...dataPost,
-          blog: user.blog
+  const handleSubmit = useCallback(
+    (options: any = {}) => {
+      const _options = {
+        ...options,
+        variables: {
+          post: {
+            ...dataPost,
+            blog: user.blog
+          }
         }
       }
-    }
-    handleCreatePost(_options)
-      .then((_data: any) => {
-        toast.success('Create post success', {
-          position: toast.POSITION.BOTTOM_RIGHT
+      handleCreatePost(_options)
+        .then((_data: any) => {
+          toast.success('Create post success', {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
         })
-      })
-      .catch((err: any) => {
-        toast.error('Fail', {
-          position: toast.POSITION.BOTTOM_RIGHT
+        .catch((err: any) => {
+          toast.error('Fail', {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
         })
-      })
-  }
+    },
+    [dataPost]
+  )
 
   return (
     <>

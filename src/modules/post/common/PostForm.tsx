@@ -28,33 +28,33 @@ const PostForm = forwardRef((props: IPostForm & any, ref: any) => {
   const handleSubmit = (options: any) => {
     onSubmit && onSubmit(options)
   }
-
-  return useMemo(
+  const memoTextEditor = useMemo(
     () => (
-      <>
-        <TitleFormik initTitle={data?.title} onChange={handleChange} />
-        <Row>
-          <Col xs="10">
-            <TextEditor
-              ref={ref}
-              value={data?.content}
-              options={options}
-              tabIndex={1} // tabIndex of textarea
-              onBlur={(newContent: any) => {
-                handleBur(postKeys.CONTENT, newContent)
-              }} // preferred to use only this option to update the content for performance reasons
-              onChange={(newContent: any) => {
-                handleChange(postKeys.CONTENT, newContent)
-              }}
-            />
-          </Col>
-          <Col xs="2">
-            <ActionForm onSubmit={handleSubmit} />
-          </Col>
-        </Row>
-      </>
+      <TextEditor
+        ref={ref}
+        value={data?.content}
+        options={options}
+        tabIndex={1} // tabIndex of textarea
+        onBlur={(newContent: any) => {
+          handleBur(postKeys.CONTENT, newContent)
+        }} // preferred to use only this option to update the content for performance reasons
+        onChange={(newContent: any) => {
+          handleChange(postKeys.CONTENT, newContent)
+        }}
+      />
     ),
     []
+  )
+  return (
+    <>
+      <TitleFormik initTitle={data?.title} onChange={handleChange} />
+      <Row>
+        <Col xs="10">{memoTextEditor}</Col>
+        <Col xs="2">
+          <ActionForm onSubmit={handleSubmit} />
+        </Col>
+      </Row>
+    </>
   )
 })
 export default PostForm
