@@ -7,8 +7,8 @@ const initState = {
 }
 export const getUserReducer: Reducer<IUSER, ActionTypes> = (state = initState, action): IUSER => {
   switch (action.type) {
-    case ActionTypeKeys.GET_USER:
-      return state
+    // case ActionTypeKeys.GET_USER:
+    //   return state
 
     case ActionTypeKeys.SET_USER:
       return {
@@ -21,11 +21,11 @@ export const getUserReducer: Reducer<IUSER, ActionTypes> = (state = initState, a
   }
 }
 
-export const onGetUser = (): IGetUserAction => {
-  return {
-    type: ActionTypeKeys.GET_USER
-  }
-}
+// export const onGetUser = (): IGetUserAction => {
+//   return {
+//     type: ActionTypeKeys.GET_USER
+//   }
+// }
 
 export const onSetUser = (payload: IUSER): ISetUserAction => {
   return {

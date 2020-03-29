@@ -1,19 +1,35 @@
 import { Reducer } from 'redux'
-import ActionTypeKeys from '../../actions/ActionTypeKey'
-import ActionTypes from '../../actions/ActionTypes'
-import { IGetTestState } from '../../actions/IActions'
-import { ITestState } from '../../models/ITestState'
+import { ActionTypeKeys, IActionTypes, ICount, ISetCount, IGetCount } from './types'
 
-export const testReducer: Reducer<ITestState, ActionTypes> = (state: ITestState = { username: '', password: '' }, action: ActionTypes): ITestState => {
+const initState = {
+  count: 0
+}
+export const countReducer: Reducer<ICount, IActionTypes> = (state = initState, action): ICount => {
   switch (action.type) {
-    case ActionTypeKeys.GET_TEST_STATE:
-      return _getTestState(state, action)
+    case ActionTypeKeys.GET_COUNT:
+      // actio
+      return state
+    case ActionTypeKeys.SET_COUNT:
+      return {
+        ...state,
+        ...action.payload
+      }
     default:
       return state
   }
 }
 
-function _getTestState(state: ITestState, action: IGetTestState): ITestState {
-  state = action.payload
-  return action.payload
+// export const getCount = (state: ICount): ICount => ({
+//   count: state.count
+// })
+
+// export const setCount = (payload: ICount): ISetCount => ({
+//   type: ActionTypeKeys.SET_COUNT,
+//   payload
+// })
+export const onSetCount = (payload: ICount): ISetCount => {
+  return {
+    type: ActionTypeKeys.SET_COUNT,
+    payload
+  }
 }

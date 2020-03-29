@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { onSetUser } from '../reducers/authentication/Auth.reducer'
 import LocalStorage from '../plugins/localstorage'
 import { localStorageKeys } from '../constants'
+import { createSelector } from 'reselect'
 // import { onGetUser } from '../reducers/authentication/Auth.reducer'
 // import { toast } from 'react-toastify'
 
@@ -51,8 +52,13 @@ const RouteExtension = ({ component: Component, isAuth, onGetUser, user, onSetUs
   )
 }
 
+const getUser = (state: any) => state.user
+const getUSerState = createSelector([getUser], (user) => {
+  return user
+})
+
 const mapStateToProps = (state: any) => ({
-  user: state.user
+  user: getUSerState(state)
 })
 const mapDispatchToProps = {
   onSetUser: onSetUser
