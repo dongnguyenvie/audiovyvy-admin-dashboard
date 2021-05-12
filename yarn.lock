@@ -881,6 +881,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.12.0", "@babel/runtime@^7.13.6":
+  version "7.14.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
+  integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.4.2", "@babel/runtime@^7.5.5":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
@@ -951,10 +958,10 @@
     core-js "^3.3.4"
     regenerator-runtime "^0.13.3"
 
-"@coreui/icons@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@coreui/icons/-/icons-1.0.1.tgz#8af0fe6450904ee1dbb0abf36bf107f35cfecf5e"
-  integrity sha512-DAlvdHRC+HHecdy52vskbNzNKEpu6wHDvSlsHGrwOqNxQl1YLhGEtqAW4sKpyVE3GgysNCywUWZGFlLp8I3LgA==
+"@coreui/icons@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@coreui/icons/-/icons-0.3.0.tgz#d5bece91b1442a9543593d1146bc8042b18489e3"
+  integrity sha512-RbBi5K5hUA8LUI9mM/i1BTaLjlyoS6kHwKbxWsH62+/j9L9WF8gAiJUhrNjMt1br8TY9RLeolyQys0E9480fIg==
 
 "@coreui/react@^2.5.7":
   version "2.5.7"
@@ -1382,6 +1389,11 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
   integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
+"@types/ace@0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@types/ace/-/ace-0.0.43.tgz#9f0916174b6060dabbccd36ba4868ea769a1c633"
+  integrity sha512-eQdX8AQ7CfSHym07MZMBQ8FKUj9AZ2Wcc26W5Ct8J4KOMjFY6SFUaf2YA8YHBut0Fwl//2kZ+0GLZNp+NQNRIA==
+
 "@types/babel__core@^7.1.0":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.4.tgz#5c5569cc40e5f2737dfc00692f5444e871e4a234"
@@ -1414,6 +1426,13 @@
   integrity sha512-yGeB2dHEdvxjP0y4UbRtQaSkXJ9649fYCmIdRoul5kfAoGCwxuCbMhag0k3RPfnuh9kPGm8x89btcfDEXdVWGw==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/classnames@^2.2.10":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.3.1.tgz#3c2467aa0f1a93f1f021e3b9bcf938bd5dfdc0dd"
+  integrity sha512-zeOWb0JGBoVmlQoznvqXbE0tEC/HONsnoUNH19Hc96NFsTAwTXbTqb8FMYkru1F/iqp7a18Ws3nWJvtA1sHD1A==
+  dependencies:
+    classnames "*"
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -2090,6 +2109,14 @@ apollo-client@^2.6.8:
     tslib "^1.10.0"
     zen-observable "^0.8.0"
 
+apollo-link-context@^1.0.19:
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/apollo-link-context/-/apollo-link-context-1.0.20.tgz#1939ac5dc65d6dff0c855ee53521150053c24676"
+  integrity sha512-MLLPYvhzNb8AglNsk2NcL9AvhO/Vc9hn2ZZuegbhRHGet3oGr0YH9s30NS9+ieoM0sGT11p7oZ6oAILM/kiRBA==
+  dependencies:
+    apollo-link "^1.2.14"
+    tslib "^1.9.3"
+
 apollo-link-http-common@^0.2.15:
   version "0.2.15"
   resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.15.tgz#304e67705122bf69a9abaded4351b10bc5efd6d9"
@@ -2117,6 +2144,16 @@ apollo-link@^1.0.0, apollo-link@^1.2.13:
     ts-invariant "^0.4.0"
     tslib "^1.9.3"
     zen-observable-ts "^0.8.20"
+
+apollo-link@^1.2.14:
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.14.tgz#3feda4b47f9ebba7f4160bef8b977ba725b684d9"
+  integrity sha512-p67CMEFP7kOG1JZ0ZkYZwRDa369w5PIjtMjvrQd/HnIV8FRsHRqLqK+oAZQnFa1DDdZtOtHTi+aMIW6EatC2jg==
+  dependencies:
+    apollo-utilities "^1.3.0"
+    ts-invariant "^0.4.0"
+    tslib "^1.9.3"
+    zen-observable-ts "^0.8.21"
 
 apollo-utilities@1.3.3, apollo-utilities@^1.3.0, apollo-utilities@^1.3.3:
   version "1.3.3"
@@ -2330,6 +2367,11 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
 
 autoprefixer@^9.6.1:
   version "9.7.4"
@@ -2989,10 +3031,10 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.js@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.3.tgz#ae3884114dafd381bc600f5b35a189138aac1ef7"
-  integrity sha512-+2jlOobSk52c1VU6fzkh3UwqHMdSlgH1xFv9FKMqHiNCpXsGPQa/+81AFa+i3jZ253Mq9aAycPwDjnn1XbRNNw==
+chart.js@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
+  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
   dependencies:
     chartjs-color "^2.1.0"
     moment "^2.10.2"
@@ -3080,6 +3122,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@*:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 classnames@^2.2.3, classnames@^2.2.6:
   version "2.2.6"
@@ -5450,6 +5497,13 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.3.9"
 
+html-parse-stringify@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz#dfc1017347ce9f77c8141a507f233040c59c55d2"
+  integrity sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==
+  dependencies:
+    void-elements "3.1.0"
+
 html-webpack-plugin@4.0.0-beta.11:
   version "4.0.0-beta.11"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-4.0.0-beta.11.tgz#3059a69144b5aecef97708196ca32f9e68677715"
@@ -5548,6 +5602,13 @@ https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
+
+i18next@^19.3.3:
+  version "19.9.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.9.2.tgz#ea5a124416e3c5ab85fddca2c8e3c3669a8da397"
+  integrity sha512-0i6cuo6ER6usEOtKajUUDj92zlG+KArFia0857xxiEHAQcUwh/RtOQocui1LPJwunSYT574Pk64aNva1kwtxZg==
+  dependencies:
+    "@babel/runtime" "^7.12.0"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
@@ -6541,6 +6602,13 @@ jest@24.9.0:
   dependencies:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
+
+jodit@^3.3.24:
+  version "3.6.15"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.6.15.tgz#521f46f11a55da8d201e7800e47fdc05c171fd77"
+  integrity sha512-yxeBe690Bj+dqJ0OMErWM8faPJR5PCqaDKWk6MGGMVH7tORFOFFXRmMtSGid6VHRGWFElhrEexLFynYXcxo+XQ==
+  dependencies:
+    autobind-decorator "^2.4.0"
 
 js-base64@^2.1.8:
   version "2.5.2"
@@ -9228,6 +9296,14 @@ react-fast-compare@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-i18next@^11.3.4:
+  version "11.8.15"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.8.15.tgz#89450d585298f18d4a8eb1628b0868863f3a4767"
+  integrity sha512-ZbKcbYYKukgDL0MiUWKJTEsEftjSTNVZv67/V+SjPqTRwuF/aL4NbUtuEcb4WjHk0HyZ1M+2wGd07Fp0RUNHKA==
+  dependencies:
+    "@babel/runtime" "^7.13.6"
+    html-parse-stringify "^3.0.1"
+
 react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
@@ -9747,6 +9823,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+reselect@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
+  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
@@ -11299,6 +11380,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
+void-elements@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
+  integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"
@@ -11891,6 +11977,14 @@ zen-observable-ts@^0.8.20:
   version "0.8.20"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.20.tgz#44091e335d3fcbc97f6497e63e7f57d5b516b163"
   integrity sha512-2rkjiPALhOtRaDX6pWyNqK1fnP5KkJJybYebopNSn6wDG1lxBoFs2+nwwXKoA6glHIrtwrfBBy6da0stkKtTAA==
+  dependencies:
+    tslib "^1.9.3"
+    zen-observable "^0.8.0"
+
+zen-observable-ts@^0.8.21:
+  version "0.8.21"
+  resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.21.tgz#85d0031fbbde1eba3cd07d3ba90da241215f421d"
+  integrity sha512-Yj3yXweRc8LdRMrCC8nIc4kkjWecPAUVh0TI0OUrWXx6aX790vLcDlWca6I4vsyCGH3LpWxq0dJRcMOFoVqmeg==
   dependencies:
     tslib "^1.9.3"
     zen-observable "^0.8.0"
