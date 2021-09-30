@@ -29,7 +29,7 @@
     "font-awesome": "^4.7.0",
     "formik": "^2.1.4",
     "graphql-tag": "^2.10.3",
-    "handsontable": "^7.4.2",
+    "handsontable": "^10.0.0",
     "i18next": "^19.3.3",
     "jodit": "^3.3.24",
     "lodash": "^4.17.15",
