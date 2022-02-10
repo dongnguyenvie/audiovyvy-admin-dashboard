@@ -82,6 +82,6 @@
     "@types/uuid": "^7.0.2",
     "@types/webpack-env": "^1.15.1",
     "@types/yup": "^0.26.33",
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   }
 }
